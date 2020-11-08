@@ -53,8 +53,6 @@ var access_token;
 })();
 
 
-
-
 $.ajax({
     url: 'https://api.spotify.com/v1/albums?ids=382ObEPsp2rxGrnsizN5TX%2C1A2GTWGtFfWp7KSQTwWOyo%2C2noRn2Aes5aoNVsU6iWThc',
     headers: {
@@ -66,4 +64,6 @@ $.ajax({
         document.getElementById("loggedinTitle").innerText = response.albums[0].name;
     }
 });
+
+
 
