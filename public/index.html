@@ -1,27 +1,83 @@
 <!doctype html>
 <html>
   <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
+    />
     <title>Music Stats Dashboard</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-
   </head>
 
   <body>
-    <div class="container">
+    <div>
       <!-- This is what the page is before you log in.-->
-      <div id="login">
+      <div id="login" class ="row">
         <h1>Music Stats Dashboard</h1>
         <a href="/login" class="btn btn-primary">Please log in with Spotify</a>
       </div>
+
+
       <!-- This is what the page is after you log in.-->
-      <div id="loggedin">
-        <h1 id="loggedinTitle"></h1>
+      <div id="loggedin" class = "container-fluid">
+        <!--This is the header where you can search for artists.-->
+        <div id = "search-bar" class = "row row-1">
+          <!--The name of the dashboard is displayed here-->
+          <div class = "col-6">
+             <h1>Music Statistics Dashboard</h1>
+          </div>
           
-        
-        
-        
-        
+          <!--This div holds the search input-->
+          <div class  = "col-6" id = "search-section">
+            <input type = "text" name = "artist-name">
+            <input type = "button" name = "search" value = "Search">
+          </div>
+        </div>
+
+
+        <!--This is where the artist name will be displayed-->
+        <div id = "artist" class = "row row-2">
+          <h2 id="loggedinTitle"></h2>
+        </div>
+
+
+        <!--This is where the statitics about the artist will be displayed.-->
+        <div class = "row row-3"> 
+          <!--This div will be where the graphs are displayed-->
+          <!--The graphs are not shown on xs screen sizes(mobile)-->
+          <div  id = "graphs" class = "d-none  d-sm-block col-sm-6">graphs here</div>
+
+          <!--This div will show the picture of the artists and their songs/albums-->
+          <div class = "col-12 col-sm-3">
+            <div class = "row pic-album">
+              <div id = "picture" class = "col-12">insertPicture of artist</div>
+            </div>
+            <div class = "row pic-album">
+              <div id = "albums" class = "col-12">
+                <p>Album list will be here</p>
+              </div>
+            </div>
+          </div>
+
+          <!--This div shows the stats not related to the graphs-->
+          <div id = "static-stats" class = "col-12 col-sm-3">
+            <div class = "row stat-row">
+              <div class = "col-6 col-sm-12 stat"># of followers</div>
+              <div class = "col-6 col-sm-12 stat">total listens</div>
+              <div class = "col-6 col-sm-12 stat"># of songs</div>
+              <div class = "col-6 col-sm-12 stat"># of albums</div>
+            </div>
+          </div>
+        </div>
+
+        <!--This is where the related artists will be displayed.-->
+        <div id = "related-artists" class = "row row-4">
+          <div class = "col-12">
+            <p>Related artists here</p>
+          </div>  
+        </div>
       </div>
     </div>
 

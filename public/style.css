@@ -2,3 +2,61 @@
     text-align: center;
     color: green;
   }
+
+.container-fluid{
+
+}
+
+.row-3{
+  height: 200px;
+  padding: 0px;
+}
+
+.pic-album{
+  height: 50%;
+}
+
+.stat-row{
+  height: 100%;
+}
+
+.stat{
+  height: 25%;
+}
+
+#search-bar{
+  text-align: left;
+  color: black;
+  background-color: bisque;
+
+}
+
+#search-section{
+  text-align: right;
+  margin: auto;
+}
+
+#artist{
+  background-color: #78c3fb;
+}
+
+#graphs{
+  background-color: #89a6fb;
+}
+
+#picture{
+  background-color: #98838f;
+}
+
+#albums{
+  background-color: #a2e3c4;
+}
+
+#static-stats{
+  background-color: #bd93d8;
+}
+
+#related-artists{
+  background-color: #cd8987;
+}
+
