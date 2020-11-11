@@ -9,6 +9,7 @@
     <title>Music Stats Dashboard</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
 
   <body>
@@ -31,8 +32,8 @@
           
           <!--This div holds the search input-->
           <div class  = "col-6" id = "search-section">
-            <input type = "text" name = "artist-name">
-            <input type = "button" name = "search" value = "Search">
+            <input type = "text" id = "artist-name">
+            <input type = "button" name = "search" value = "Search" id="search">
           </div>
         </div>
 
@@ -52,7 +53,7 @@
           <!--This div will show the picture of the artists and their songs/albums-->
           <div class = "col-12 col-sm-3">
             <div class = "row pic-album">
-              <div id = "picture" class = "col-12">insertPicture of artist</div>
+              <div id = "picture" class = "col-12"><img src="" alt="pic of artist" id="ArtistPic"></div>
             </div>
             <div class = "row pic-album">
               <div id = "albums" class = "col-12">
@@ -64,10 +65,10 @@
           <!--This div shows the stats not related to the graphs-->
           <div id = "static-stats" class = "col-12 col-sm-3">
             <div class = "row stat-row">
-              <div class = "col-6 col-sm-12 stat"># of followers</div>
-              <div class = "col-6 col-sm-12 stat">total listens</div>
-              <div class = "col-6 col-sm-12 stat"># of songs</div>
-              <div class = "col-6 col-sm-12 stat"># of albums</div>
+              <div class = "col-6 col-sm-12 stat"># of followers<p id="fol"></p></div>
+              <div class = "col-6 col-sm-12 stat">Popularity Index<p id="pop"></p></div>
+              <div class = "col-6 col-sm-12 stat"># of songs<p id="songs"></p></div>
+              <div class = "col-6 col-sm-12 stat"># of albums<p id="alb"></p></div>
             </div>
           </div>
         </div>
