@@ -2,3 +2,6 @@
     We meet over a zoom meeting to discuss our plan. Chris helped me with a small problem causing me not 
 to be able to use node.js. I hadn't installed a couple node modules dependencies. After the meeting I set up 
 framework for the page.
+
+11/10/20
+    Worked on the formating after Chris added the ability to search and display statistics of artists.

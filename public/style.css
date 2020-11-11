@@ -1,15 +1,6 @@
-#login, #loggedin {
-    text-align: center;
-    color: green;
-  }
 
-.container-fluid{
-
-}
-
-.row-3{
-  height: 200px;
-  padding: 0px;
+html{
+  background-color: #1c2541;
 }
 
 .pic-album{
@@ -24,6 +15,39 @@
   height: 25%;
 }
 
+.stat > h2{
+  color: white;
+  font-size: 2em;
+}
+
+.stat > p{
+  color: grey;
+  font-size: 1.5em;
+}
+
+#loggedin {
+  text-align: center;
+  color: green;
+}
+
+#login{
+  text-align:center;
+  color: white;
+}
+
+#login > h1{
+  font-size: 2em;
+}
+
+#login{
+  background-color: #1c2541;
+  height: 100%;
+}
+
+#row-3{
+  height: 400px;
+  padding: 0px;
+}
 #search-bar{
   text-align: left;
   color: black;
@@ -34,6 +58,11 @@
 #search-section{
   text-align: right;
   margin: auto;
+}
+
+#loggedinTitle{
+  font-size: 4em;
+  color: white;
 }
 
 #artist{

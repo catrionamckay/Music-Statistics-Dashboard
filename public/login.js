@@ -39,8 +39,9 @@ google.charts.load("current", { packages: ["corechart"] });
 
                     $('#login').hide();
                     $('#loggedin').show();
-
-
+                    $('#artist').hide();
+                    $('#row-3').hide();
+                    $('#related-artists').hide();
 
                 }
             });
@@ -48,6 +49,7 @@ google.charts.load("current", { packages: ["corechart"] });
             // render initial screen
             $('#login').show();
             $('#loggedin').hide();
+            
         }
 
 
@@ -60,16 +62,17 @@ google.charts.load("current", { packages: ["corechart"] });
 //then is formed into URL for the API call
 //API Call is made and artist ID is grabbed for future calls
 var artistToSearch = "";
-
 var searchButton = document.querySelector("#search");
 searchButton.addEventListener("click", async function getUserSearch() {
-
+    $('#artist').show();
+    $('#row-3').show();
+    $('#related-artists').show();
     var artistID = "";
     var x = document.querySelector("#artist-name");
     x = encodeURI(x.value);
     console.log(x);
     artistToSearch = "https://api.spotify.com/v1/search?q=" + x + "&type=artist&market=US&limit=1";
-    console.log(artistToSearch);
+    console.log(artistToSearch);  
     $.ajax({
         url: artistToSearch,
         headers: {
@@ -81,7 +84,7 @@ searchButton.addEventListener("click", async function getUserSearch() {
             
             console.log(response);
             document.getElementById("loggedinTitle").innerHTML = response.artists.items[0].name;
-            document.getElementById("fol").innerHTML = response.artists.items[0].followers.total + " followers";
+            document.getElementById("fol").innerHTML = reformatFollowerCount(response.artists.items[0].followers.total);
             console.log(response.artists.items[0].images[1].url);
             document.getElementById("ArtistPic").setAttribute("src", response.artists.items[0].images[2].url);
             document.getElementById("pop").innerHTML = response.artists.items[0].popularity;
@@ -108,6 +111,7 @@ searchButton.addEventListener("click", async function getUserSearch() {
             var options = {
                 title: response.artists.items[0].name + "'s Genres of Music",
                 is3D: true,
+                legend: {position: "bottom"},
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('graphs'));
@@ -144,9 +148,33 @@ searchButton.addEventListener("click", async function getUserSearch() {
             
         }
     });
-
-
+    document.getElementById("artist-name").value = '';
+    
 });
+
+// this function makes it so that when pressing enter in the search box it searches the artist.
+var searchInput = document.querySelector("#artist-name");
+searchInput.addEventListener("keyup", function(event){
+    if(event.keyCode === 13){
+        searchButton.click();
+    }
+});
+
+// This function returns the follower refomated if over 1,000
+function reformatFollowerCount(followerCount){
+    var newNumber;
+    if(followerCount < 1000){
+        return followerCount;
+    }
+    if(followerCount < 1000000){
+        newNumber = followerCount/1000.0;
+        newNumber = newNumber.toFixed(1);
+        return newNumber + "K";
+    }
+    newNumber =  followerCount/1000000.0;
+    newNumber = newNumber.toFixed(1);
+    return newNumber + "M";
+}
 
 
 
