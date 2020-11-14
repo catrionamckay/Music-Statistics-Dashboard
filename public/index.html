@@ -1,116 +1,124 @@
 <!doctype html>
 <html>
-  <head>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
-    />
-    <title>Music Stats Dashboard</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  </head>
 
-  <body>
-    <div>
-      <!-- This is what the page is before you log in.-->
-      <div id="login" >
-        <h1>Music Stats Dashboard</h1>
-        <a href="/login" class="btn btn-primary">Please log in with Spotify</a>
-      </div>
+<head>
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <title>Music Stats Dashboard</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
 
-
-      <!-- This is what the page is after you log in.-->
-      <div id="loggedin" class = "container-fluid">
-        <!--This is the header where you can search for artists.-->
-        <div id = "search-bar" class = "row" id = "row-1">
-          <!--The name of the dashboard is displayed here-->
-          <div class = "col-6">
-             <h1>Music Statistics Dashboard</h1>
-          </div>
-          
-          <!--This div holds the search input-->
-          <div class  = "col-6" id = "search-section">
-            <input type = "text" id = "artist-name">
-            <input type = "button" name = "search" value = "Search" id="search">
-          </div>
-        </div>
-
-
-        <!--This is where the artist name will be displayed-->
-        <div id = "artist" class = "row">
-          <h2 id="loggedinTitle"></h2>
-        </div>
-
-
-        <!--This is where the statitics about the artist will be displayed.-->
-        <div class = "row" id = "row-3"> 
-          <!--This div will be where the graphs are displayed-->
-          <!--The graphs are not shown on xs screen sizes(mobile)-->
-          <div id = "graphs" class = "d-none  d-sm-block col-sm-6">
-            <div id= "graph1" class="col-12" ></div>
-            <div id= "graph2" class="col-12" ></div>
-            <div id= "graph3" class="col-12" ></div>
-            
-          </div>
-          
-          
-
-          <!--This div will show the picture of the artists and their songs/albums-->
-          <div class = "col-12 col-sm-3">
-            <div class = "row pic-album">
-              <div id = "picture" class = "col-12"><img src="" alt="pic of artist" id="ArtistPic"></div>
-            </div>
-            <div class = "row pic-album">
-              <div id = "albums" class = "col-12">
-                <h3>Album List:</h3>
-              </div>
-            </div>
-          </div>
-
-          <!--This div shows the stats not related to the graphs-->
-          <div id = "static-stats" class = "col-12 col-sm-3">
-            <div class = "row stat-row">
-
-              <div class = "col-6 col-sm-12 stat">
-                <h2 id="fol"></h2>
-                <p>Followers</p>
-              </div>
-
-              <div class = "col-6 col-sm-12 stat">
-                <h2 id="pop"></h2>
-                <p>Popularity Index</p>
-              </div>
-
-              <div class = "col-6 col-sm-12 stat">
-                <h2 id="songs"></h2>
-                <p>Song(s)</p>
-              </div>
-
-              <div class = "col-6 col-sm-12 stat">
-                <h2 id="alb"></h2>
-                <p>Album(s)</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--This is where the related artists will be displayed.-->
-        <div id = "related-artists" class = "row">
-          <div class = "col-12">
-            <p>Related artists here</p>
-          </div>  
-        </div>
-      </div>
+<body>
+  <div>
+    <!-- This is what the page is before you log in.-->
+    <div id="login">
+      <h1>Music Stats Dashboard</h1>
+      <a href="/login" class="btn btn-primary">Please log in with Spotify</a>
+      <footer>
+        <p>Created by Catriona McKay and Christopher Renslow</p>
+      </footer>
+      
     </div>
 
 
+    <!-- This is what the page is after you log in.-->
+    <div id="loggedin" class="container-fluid">
+      <!--This is the header where you can search for artists.-->
+      <div id="search-bar" class="row" id="row-1">
+        <!--The name of the dashboard is displayed here-->
+        <div class="col-6">
+          <h1>Music Statistics Dashboard</h1>
+        </div>
 
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script
-      src="login.js">
-    </script>
-  </body>
+        <!--This div holds the search input-->
+        <div class="col-6" id="search-section">
+          <input type="text" id="artist-name">
+          <input type="button" name="search" value="Search" id="search">
+        </div>
+      </div>
+
+
+      <!--This is where the artist name will be displayed-->
+      <div id="artist" class="row">
+        <h2 id="loggedinTitle"></h2>
+      </div>
+
+
+      <!--This is where the statitics about the artist will be displayed.-->
+      <div class="row" id="row-3">
+        <!--This div will be where the graphs are displayed-->
+        <!--The graphs are not shown on xs screen sizes(mobile)-->
+        <div id="graphs" class="d-none  d-sm-block col-sm-6">
+          <div id="graph1" class="col-12"></div>
+          <br/>
+          <div id="graph2" class="col-12"></div>
+          <div id="graph3" class="col-12"></div>
+
+        </div>
+
+
+
+        <!--This div will show the picture of the artists and their songs/albums-->
+        <div class="col-12 col-sm-3">
+          <div class="row pic-album">
+            <div id="picture" class="col-12"><img src="" alt="pic of artist" id="ArtistPic"></div>
+          </div>
+          <div class="row pic-album">
+            <div id="albums" class="col-12">
+              <h3>Album List:</h3>
+            </div>
+          </div>
+        </div>
+
+        <!--This div shows the stats not related to the graphs-->
+        <div id="static-stats" class="col-12 col-sm-3">
+          <div class="row stat-row">
+
+            <div class="col-6 col-sm-12 stat">
+              <h2 id="fol"></h2>
+              <p>Followers</p>
+            </div>
+
+            <div class="col-6 col-sm-12 stat">
+              <h2 id="pop"></h2>
+              <p>Popularity Index*</p>
+            </div>
+
+            <div class="col-6 col-sm-12 stat">
+              <h2 id="songs"></h2>
+              <p>Song(s)</p>
+            </div>
+
+            <div class="col-6 col-sm-12 stat">
+              <h2 id="alb"></h2>
+              <p>Album(s)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--This is where the related artists will be displayed.-->
+      <div id="related-artists" class="row">
+        <div class="col-12">
+          <p>Related artists here</p>
+        </div>
+      </div>
+      <footer>
+        <p>Created by Catriona McKay and Christopher Renslow</p>
+        <p id="PIDescription">*The popularity of the artist.
+          The value will be between 0 and 100, with 100 being the most popular.
+          The artist’s popularity is calculated from the popularity of all the artist’s tracks.</p>
+      </footer>
+    </div>
+  </div>
+
+
+
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="login.js">
+  </script>
+</body>
+
 </html>
-

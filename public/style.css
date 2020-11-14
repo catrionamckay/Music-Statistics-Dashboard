@@ -37,7 +37,7 @@ li{
 }
 
 .stat > p{
-  color: grey;
+  color: black;
   font-size: 1.5em;
 }
 
@@ -50,7 +50,7 @@ li{
 
 #loggedin {
   text-align: center;
-  color: green;
+  color: black;
 }
 
 #login{
@@ -60,11 +60,13 @@ li{
 
 #login > h1{
   font-size: 2em;
+  position: relative;
+  height: 50%;
 }
 
 #login{
   background-color: #1c2541;
-  height: 100%;
+  
 }
 
 #row-3{
@@ -111,6 +113,7 @@ li{
 
 #static-stats{
   background-color: #bd93d8;
+  color: black;
 }
 
 #related-artists{
@@ -118,4 +121,9 @@ li{
   position: relative;
 }
 
-
+footer{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  font-size: 75%
+}

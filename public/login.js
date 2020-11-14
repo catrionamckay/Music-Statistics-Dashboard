@@ -83,6 +83,7 @@ searchButton.addEventListener("click", async function getUserSearch() {
     $('#related-artists').show();
     var artistID = "";
     var x = document.querySelector("#artist-name");
+    
     x = encodeURI(x.value);
     console.log(x);
     artistToSearch = "https://api.spotify.com/v1/search?q=" + x + "&type=artist&market=US&limit=1";
