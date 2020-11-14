@@ -5,3 +5,6 @@ framework for the page.
 
 11/10/20
     Worked on the formating after Chris added the ability to search and display statistics of artists.
+
+11/13/20
+    Implemented album list.

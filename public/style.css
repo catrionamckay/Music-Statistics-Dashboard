@@ -3,6 +3,22 @@ html{
   background-color: #1c2541;
 }
 
+ul{
+  overflow: hidden;
+  overflow-y: scroll;
+  list-style-type: none;
+  height: 200px;
+  text-align: left;
+  padding:0px;
+}
+
+li{
+  width: 100%;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border: solid black 2px;
+}
+
 .pic-album{
   height: 50%;
 }
@@ -25,6 +41,13 @@ html{
   font-size: 1.5em;
 }
 
+.albumbtn{
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+
 #loggedin {
   text-align: center;
   color: green;
@@ -45,7 +68,6 @@ html{
 }
 
 #row-3{
-  height: 400px;
   padding: 0px;
 }
 #search-bar{
@@ -79,6 +101,12 @@ html{
 
 #albums{
   background-color: #a2e3c4;
+  height: 100%;
+  overflow: hidden;
+}
+
+#albums > h2{
+  font-size: .75em;
 }
 
 #static-stats{
@@ -87,5 +115,7 @@ html{
 
 #related-artists{
   background-color: #cd8987;
+  position: relative;
 }
+
 

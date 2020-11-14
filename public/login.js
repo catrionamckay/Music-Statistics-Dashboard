@@ -148,6 +148,52 @@ searchButton.addEventListener("click", async function getUserSearch() {
             
         }
     });
+
+    $.ajax({
+        url: artistToSearch,
+        headers: {
+            'Authorization': 'Bearer ' + access_token
+        },
+        success: function (response) {
+            artistID = response.artists.items[0].id;
+            var albumSearch =  "https://api.spotify.com/v1/artists/"+artistID+"/albums?include_groups=album&market=US&limit=50"
+            $.ajax({
+                url: albumSearch,
+                headers: {
+                    'Authorization': 'Bearer ' + access_token
+                },
+                success: function (response) {
+                    document.getElementById("albums").innerHTML = '';
+                    console.log(response.items);
+                    var header = document.createElement("h3");
+                    var albumName;
+                    var albumlist = document.createElement("ul");
+                    var listitem;
+                    var albumDiv = document.createElement("div");
+
+                    header.innerHTML = "Album Lists:"
+                    response.items.forEach(album => {
+                        albumName = document.createElement("button");
+                        listitem = document.createElement("li");
+                        albumName.value = album.name;
+                        albumName.innerHTML = album.name;
+                        albumDiv.appendChild(albumName);
+                        albumDiv.setAttribute("class", "albumbtn");
+                        listitem.appendChild(albumName);
+                        albumlist.appendChild(listitem);
+                        console.log(album.name);
+                        
+                    });
+                    albumDiv.appendChild(header);
+                    albumDiv.appendChild(albumlist);
+                    document.getElementById("albums").appendChild(albumDiv); 
+                    
+                }
+            });
+            
+        }
+    });
+
     document.getElementById("artist-name").value = '';
     
 });
