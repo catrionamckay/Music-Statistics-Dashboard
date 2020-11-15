@@ -7,17 +7,18 @@ ul{
   overflow: hidden;
   overflow-y: scroll;
   list-style-type: none;
-  height: 200px;
   text-align: left;
   padding:0px;
 }
 
 li{
   width: 100%;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  border: solid black 2px;
+  overflow: hidden;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: solid black 1px;
 }
+
 
 .pic-album{
   height: 50%;
@@ -69,6 +70,7 @@ li{
 
 #row-3{
   padding: 0px;
+
 }
 #search-bar{
   text-align: left;
@@ -102,10 +104,11 @@ li{
 #albums{
   background-color: #a2e3c4;
   height: 100%;
-  overflow: hidden;
+  
 }
 
 #albums > h2{
+  overflow: hidden;
   font-size: .75em;
 }
 
@@ -118,4 +121,7 @@ li{
   position: relative;
 }
 
-
+.track-list{
+  padding-left: 15px;
+  height: 25%;
+}

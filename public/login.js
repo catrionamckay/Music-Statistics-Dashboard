@@ -171,14 +171,47 @@ searchButton.addEventListener("click", async function getUserSearch() {
                     var listitem;
                     var albumDiv = document.createElement("div");
 
+                    var albumID;
+                    var tracks;
+
                     header.innerHTML = "Album Lists:"
                     response.items.forEach(album => {
+                        albumID = album.id;
                         albumName = document.createElement("button");
                         listitem = document.createElement("li");
                         albumName.value = album.name;
                         albumName.innerHTML = album.name;
+                        
+                        tracks = "https://api.spotify.com/v1/albums/"+albumID+"/tracks";
+                        $.ajax({
+                            url: tracks,
+                            headers: {
+                                'Authorization': 'Bearer ' + access_token
+                            },
+                            success: function(response){
+                                console.log("Tracks added for" + album.name);
+                                var trackList = document.createElement("ul");
+                                var trackbtn;
+                                var trackName;
+                                response.items.forEach(track => {
+                                    trackbtn = document.createElement("button");
+                                    trackName = document.createElement("li");
+                                    trackbtn.value = track.name;
+                                    trackbtn.innerHTML = track.name;
+                                    trackName.appendChild(trackbtn);
+                                    listitem.appendChild(trackName);
+                                    trackList.appendChild(trackName);
+                                });
+                                trackList.classList.add("track-list");
+                                document.getElementById(album.name).appendChild(trackList);
+                                
+                            }
+                        });
+
                         albumDiv.appendChild(albumName);
                         albumDiv.setAttribute("class", "albumbtn");
+                        listitem.setAttribute("id", album.name);
+                        listitem.setAttribute("class", "albumLi");
                         listitem.appendChild(albumName);
                         albumlist.appendChild(listitem);
                         console.log(album.name);
