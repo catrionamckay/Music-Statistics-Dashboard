@@ -280,8 +280,12 @@ searchButton.addEventListener("click", async function getUserSearch() {
                     var tracks;
 
                     header.innerHTML = "Album Lists:"
+                    albumDiv.appendChild(albumlist);
+                    document.getElementById("albums").appendChild(header);
+                    document.getElementById("albums").appendChild(albumDiv); 
                     response.items.forEach(album => {
-                        albumID = album.id;
+                        if(document.getElementById(album.name.replace(/[ :()]/g, '-')) === null){
+                           albumID = album.id;
                         albumName = document.createElement("button");
                         listitem = document.createElement("li");
                         albumName.value = album.name;
@@ -306,25 +310,26 @@ searchButton.addEventListener("click", async function getUserSearch() {
                                     trackName.appendChild(trackbtn);
                                     listitem.appendChild(trackName);
                                     trackList.appendChild(trackName);
+                                    trackList.style.display = 'none';
                                 });
                                 trackList.classList.add("track-list");
-                                document.getElementById(album.name).appendChild(trackList);
-                                
+                                document.getElementById(album.name.replace(/[ :()]/g, '-')).appendChild(trackList);
+                            
                             }
                         });
 
                         albumDiv.appendChild(albumName);
                         albumDiv.setAttribute("class", "albumbtn");
-                        listitem.setAttribute("id", album.name);
+                        listitem.setAttribute("id", album.name.replace(/[ :()]/g, '-'));
                         listitem.setAttribute("class", "albumLi");
+                        listitem.setAttribute("onclick", "toggleTracks(this);");
                         listitem.appendChild(albumName);
                         albumlist.appendChild(listitem);
-                        console.log(album.name);
+                        console.log(album.name); 
+                        }
                         
                     });
-                    albumDiv.appendChild(header);
-                    albumDiv.appendChild(albumlist);
-                    document.getElementById("albums").appendChild(albumDiv); 
+                    
                     
                 }
             });
@@ -381,6 +386,25 @@ function graphs() {
 */
 
 
+function toggleTracks(element){
+    console.log("Element " + element.id);
+
+    //var list = document.querySelector(element.id);
+    var parent = element.closest('.albumLi');
+    var list = parent.getElementsByClassName('track-list');
+    console.log(list);
+    //list.forEach(item =>{
+    for(const item of list){
+        console.log(item.style.display);
+        if(item.style.display === 'none'){
+            item.style.display = 'block';
+        }
+        else{
+            item.style.display = 'none';
+        }
+    }
+    
+}
 
 
 

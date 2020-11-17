@@ -5,23 +5,26 @@ html{
 
 ul{
   overflow: hidden;
-  overflow-y: scroll;
   list-style-type: none;
   text-align: left;
   padding:0px;
 }
 
-li{
+.albumLi{
   width: 100%;
   overflow: hidden;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border: solid black 1px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.albumbtn{
+  height: 80%;
+  overflow: hidden;
+  overflow-y: scroll;
+  display: block;
 }
 
-
 .pic-album{
-  height: 50%;
+  height: 200px;
 }
 
 .stat-row{
@@ -42,12 +45,11 @@ li{
   font-size: 1.5em;
 }
 
-.albumbtn{
-  display: block;
-  width: 100%;
-  border: none;
+.track-list{
+  overflow: hidden;
+  padding-left: 15px;
+  display: none;
 }
-
 
 #loggedin {
   text-align: center;
@@ -109,9 +111,10 @@ li{
   
 }
 
-#albums > h2{
+#albums > h3{
   overflow: hidden;
-  font-size: .75em;
+  font-size: 2em;
+  margin: 0px;
 }
 
 #static-stats{
@@ -125,15 +128,16 @@ li{
 }
 
 
-.track-list{
-  padding-left: 15px;
-  height: 25%;
-}
 
 footer{
   position: absolute;
   width: 100%;
   bottom: 0;
   font-size: 75%
+}
+
+#row-3{
+  height: 400px;
+  overflow:hidden;
 }
 
