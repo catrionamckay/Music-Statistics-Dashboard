@@ -340,48 +340,46 @@ searchButton.addEventListener("click", function getUserSearch() {
                     document.getElementById("albums").appendChild(header);
                     document.getElementById("albums").appendChild(albumDiv);
                     response.items.forEach(album => {
-                        if (document.getElementById(album.name.replace(/[ :()]/g, '-')) === null) {
-                            albumID = album.id;
-                            albumName = document.createElement("button");
-                            listitem = document.createElement("li");
-                            albumName.value = album.name;
-                            albumName.innerHTML = album.name;
+                        if(document.getElementById(album.name.replace(/[ :()]/g, '-')) === null){
+                           albumID = album.id;
+                        albumName = document.createElement("button");
+                        listitem = document.createElement("li");
+                        albumName.value = album.name;
+                        albumName.innerHTML = album.name;
+                        
+                        tracks = "https://api.spotify.com/v1/albums/"+albumID+"/tracks";
+                        $.ajax({
+                            url: tracks,
+                            headers: {
+                                'Authorization': 'Bearer ' + access_token
+                            },
+                            success: function(response){
+                                var trackList = document.createElement("ul");
+                                var trackbtn;
+                                var trackName;
+                                response.items.forEach(track => {
+                                    trackbtn = document.createElement("button");
+                                    trackName = document.createElement("li");
+                                    trackbtn.value = track.name;
+                                    trackbtn.innerHTML = track.name;
+                                    trackName.appendChild(trackbtn);
+                                    listitem.appendChild(trackName);
+                                    trackList.appendChild(trackName);
+                                    trackList.style.display = 'none';
+                                });
+                                trackList.classList.add("track-list");
+                                document.getElementById(album.name.replace(/[ :()]/g, '-')).appendChild(trackList);
+                            
+                            }
+                        });
 
-                            tracks = "https://api.spotify.com/v1/albums/" + albumID + "/tracks";
-                            $.ajax({
-                                url: tracks,
-                                headers: {
-                                    'Authorization': 'Bearer ' + access_token
-                                },
-                                success: function (response) {
-                                    //console.log("Tracks added for" + album.name);
-                                    var trackList = document.createElement("ul");
-                                    var trackbtn;
-                                    var trackName;
-                                    response.items.forEach(track => {
-                                        trackbtn = document.createElement("button");
-                                        trackName = document.createElement("li");
-                                        trackbtn.value = track.name;
-                                        trackbtn.innerHTML = track.name;
-                                        trackName.appendChild(trackbtn);
-                                        listitem.appendChild(trackName);
-                                        trackList.appendChild(trackName);
-                                        trackList.style.display = 'none';
-                                    });
-                                    trackList.classList.add("track-list");
-                                    document.getElementById(album.name.replace(/[ :()]/g, '-')).appendChild(trackList);
-
-                                }
-                            });
-
-                            albumDiv.appendChild(albumName);
-                            albumDiv.setAttribute("class", "albumbtn");
-                            listitem.setAttribute("id", album.name.replace(/[ :()]/g, '-'));
-                            listitem.setAttribute("class", "albumLi");
-                            listitem.setAttribute("onclick", "toggleTracks(this);");
-                            listitem.appendChild(albumName);
-                            albumlist.appendChild(listitem);
-                            //console.log(album.name);
+                        albumDiv.appendChild(albumName);
+                        albumDiv.setAttribute("class", "albumbtn");
+                        listitem.setAttribute("id", album.name.replace(/[ :()]/g, '-'));
+                        listitem.setAttribute("class", "albumLi");
+                        listitem.setAttribute("onclick", "toggleTracks(this);");
+                        listitem.appendChild(albumName);
+                        albumlist.appendChild(listitem);
                         }
 
                     });
@@ -390,6 +388,46 @@ searchButton.addEventListener("click", function getUserSearch() {
                 }
             });
 
+        }
+    });
+
+    $.ajax({
+        url: artistToSearch,
+        headers: {
+            'Authorization': 'Bearer ' + access_token
+        },
+        success: function (response) {
+            artistID = response.artists.items[0].id;
+            var relatedArtists =  "https://api.spotify.com/v1/artists/"+artistID+"/related-artists";
+            var relatedRow = document.getElementById("related-artists");
+            relatedRow.innerHTML = '';
+            $.ajax({
+                url: relatedArtists,
+                headers: {
+                    'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response){
+                    var artistDiv;
+                    var artistPic;
+                    var artistName;
+                    var text;
+                    
+                    console.log("successful in getting related Artists.");
+                    response.artists.forEach(artist => {
+                        artistDiv = document.createElement("div");
+                        //artistDiv.setAttribute("class", "col-12 col-sm-3");
+                        console.log(artist.name);
+                        artistName = document.createElement("p");
+                        artistPic = document.createElement("img");
+                        text = document.createTextNode(artist.name);
+                        artistName.appendChild(text);
+                        artistPic.setAttribute("src", artist.images[2].url);
+                        artistDiv.appendChild(artistName);
+                        artistDiv.appendChild(artistPic);
+                        relatedRow.appendChild(artistDiv);
+                    })
+                }
+            });
         }
     });
 
@@ -443,6 +481,8 @@ function toggleTracks(element) {
     }
 
 }
+
+
 
 
 
