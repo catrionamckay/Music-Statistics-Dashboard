@@ -298,7 +298,6 @@ searchButton.addEventListener("click", async function getUserSearch() {
                                 'Authorization': 'Bearer ' + access_token
                             },
                             success: function(response){
-                                console.log("Tracks added for" + album.name);
                                 var trackList = document.createElement("ul");
                                 var trackbtn;
                                 var trackName;
@@ -325,7 +324,6 @@ searchButton.addEventListener("click", async function getUserSearch() {
                         listitem.setAttribute("onclick", "toggleTracks(this);");
                         listitem.appendChild(albumName);
                         albumlist.appendChild(listitem);
-                        console.log(album.name); 
                         }
                         
                     });
@@ -334,6 +332,46 @@ searchButton.addEventListener("click", async function getUserSearch() {
                 }
             });
             
+        }
+    });
+
+    $.ajax({
+        url: artistToSearch,
+        headers: {
+            'Authorization': 'Bearer ' + access_token
+        },
+        success: function (response) {
+            artistID = response.artists.items[0].id;
+            var relatedArtists =  "https://api.spotify.com/v1/artists/"+artistID+"/related-artists";
+            var relatedRow = document.getElementById("related-artists");
+            relatedRow.innerHTML = '';
+            $.ajax({
+                url: relatedArtists,
+                headers: {
+                    'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response){
+                    var artistDiv;
+                    var artistPic;
+                    var artistName;
+                    var text;
+                    
+                    console.log("successful in getting related Artists.");
+                    response.artists.forEach(artist => {
+                        artistDiv = document.createElement("div");
+                        //artistDiv.setAttribute("class", "col-12 col-sm-3");
+                        console.log(artist.name);
+                        artistName = document.createElement("p");
+                        artistPic = document.createElement("img");
+                        text = document.createTextNode(artist.name);
+                        artistName.appendChild(text);
+                        artistPic.setAttribute("src", artist.images[2].url);
+                        artistDiv.appendChild(artistName);
+                        artistDiv.appendChild(artistPic);
+                        relatedRow.appendChild(artistDiv);
+                    })
+                }
+            });
         }
     });
 
@@ -405,6 +443,8 @@ function toggleTracks(element){
     }
     
 }
+
+
 
 
 
