@@ -80,7 +80,7 @@ var graph3;
 var data3;
 var options3;
 
-let graphloc = document.getElementById("graphnav")
+let graphloc = document.getElementById("graphs")
 var clicks = 1;
 searchButton.addEventListener("click", function getUserSearch() {
     clicks = 1;
@@ -141,7 +141,7 @@ searchButton.addEventListener("click", function getUserSearch() {
         }
 
     });
-    graphloc.addEventListener('click', function () {
+    graphloc.onclick = function () {
 
         switch (clicks) {
             case 1:
@@ -278,7 +278,7 @@ searchButton.addEventListener("click", function getUserSearch() {
         if (clicks > 3)
             clicks = 1;
         console.log(clicks);
-    });
+    };
 
 
 
@@ -421,25 +421,7 @@ function reformatFollowerCount(followerCount) {
     return newNumber + "M";
 }
 
-/*
-var clicks = 0;
-function graphs() {
-    ++clicks;
-    if (clicks == 1 || clicks % 2 !== 0) {
-        $('#graph1').hide();
-        $('#graph2').hide();
-        $('#graph3').show();
-        $('#graph4').show();
-    }
-    else{
-        $('#graph1').show();
-        $('#graph2').show();
-        $('#graph3').hide();
-        $('#graph4').hide();
-    }
-    //console.log(clicks);
-}
-*/
+
 
 
 function toggleTracks(element) {
