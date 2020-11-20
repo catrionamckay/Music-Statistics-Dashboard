@@ -8,3 +8,8 @@ framework for the page.
 
 11/13/20
     Implemented album list.
+
+11/19/20
+    Implementing the track list to show and hide when clicking on the album took awhile. Eventually I figured it out.
+The related artists list was implemented shortly after. I tried to do some animations with it using javascript but it
+didn't work. Related artists when clicked on will go to their page.

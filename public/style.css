@@ -54,6 +54,7 @@ ul{
 #loggedin {
   text-align: center;
   color: black;
+  padding: 0px;
 }
 
 #login{
@@ -125,9 +126,17 @@ ul{
 #related-artists{
   background-color: #cd8987;
   position: relative;
+  overflow: hidden;
+
+  float: left;
+  width: 100%;
+  margin: 0px;
 }
 
-
+#extendedDiv{
+  white-space: nowrap;
+  overflow: auto;
+}
 
 footer{
   position: absolute;
@@ -139,5 +148,22 @@ footer{
 #row-3{
   height: 400px;
   overflow:hidden;
+}
+
+.artist-div{
+  width: 200px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.artist-div button{
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.artist-div img{
+  height: 200px;
+  width: 200px;
 }
 

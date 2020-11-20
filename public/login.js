@@ -335,7 +335,7 @@ searchButton.addEventListener("click", function getUserSearch() {
                     var albumID;
                     var tracks;
 
-                    header.innerHTML = "Album Lists:"
+                    header.innerHTML = "Album(s):"
                     albumDiv.appendChild(albumlist);
                     document.getElementById("albums").appendChild(header);
                     document.getElementById("albums").appendChild(albumDiv);
@@ -379,7 +379,10 @@ searchButton.addEventListener("click", function getUserSearch() {
                         listitem.setAttribute("class", "albumLi");
                         listitem.setAttribute("onclick", "toggleTracks(this);");
                         listitem.appendChild(albumName);
+
+                        
                         albumlist.appendChild(listitem);
+                        
                         }
 
                     });
@@ -411,21 +414,27 @@ searchButton.addEventListener("click", function getUserSearch() {
                     var artistPic;
                     var artistName;
                     var text;
-                    
+                    var extendedDiv = document.createElement("div");
                     console.log("successful in getting related Artists.");
                     response.artists.forEach(artist => {
                         artistDiv = document.createElement("div");
+                        artistDiv.setAttribute("class", "artist-div");
                         //artistDiv.setAttribute("class", "col-12 col-sm-3");
-                        console.log(artist.name);
-                        artistName = document.createElement("p");
+                        //console.log(artist.name);
+                        artistName = document.createElement("button");
+                        artistName.setAttribute("class", "search-btn");
+                        artistName.value = artist.name;
+                        artistName.setAttribute("onclick", "relatedArtistSearch(this.value)");
                         artistPic = document.createElement("img");
                         text = document.createTextNode(artist.name);
                         artistName.appendChild(text);
                         artistPic.setAttribute("src", artist.images[2].url);
                         artistDiv.appendChild(artistName);
                         artistDiv.appendChild(artistPic);
-                        relatedRow.appendChild(artistDiv);
-                    })
+                        extendedDiv.appendChild(artistDiv);
+                    });
+                    extendedDiv.setAttribute("id", "extendedDiv");
+                    relatedRow.appendChild(extendedDiv);
                 }
             });
         }
@@ -481,6 +490,14 @@ function toggleTracks(element) {
     }
 
 }
+
+function relatedArtistSearch(value){
+    var searchInput = document.getElementById("artist-name");
+    searchInput.value = value;
+    searchButton.click();
+}
+
+
 
 
 
