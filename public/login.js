@@ -1,5 +1,6 @@
 var access_token;
 google.charts.load("current", { packages: ["corechart"] });
+google.charts.load("current", { packages: ["timeline"] });
 //google.charts.setOnLoadCallback(drawChart);
 
 (function () {
@@ -80,6 +81,11 @@ var graph3;
 var data3;
 var options3;
 
+//graph3 global varibles for future use
+var graph4;
+var data4;
+var options4;
+
 let graphloc = document.getElementById("graphs")
 var clicks = 1;
 searchButton.addEventListener("click", function getUserSearch() {
@@ -144,7 +150,40 @@ searchButton.addEventListener("click", function getUserSearch() {
     graphloc.onclick = function () {
 
         switch (clicks) {
-            case 1:
+            case 4:
+                $.ajax({
+                    url: artistToSearch,
+                    headers: {
+                        'Authorization': 'Bearer ' + access_token
+                    },
+                    success: function (response) {
+
+
+                        //var data = new google.visualization.DataTable();
+                        data1 = new google.visualization.DataTable();
+                        data1.addColumn('string', 'Genre');
+                        data1.addColumn('number', 'Num');
+                        response.artists.items[0].genres.forEach(element => {
+                            //console.log(element);
+                            data1.addRow([element, 1]);
+                        });
+
+                        options1 = {
+                            title: response.artists.items[0].name + "'s Genres of Music",
+                            is3D: true,
+                            legend: { position: "bottom" },
+                        };
+
+                        graph1 = new google.visualization.PieChart(document.getElementById('graphs'));
+                        graph1.draw(data1, options1);
+                    }
+
+                });
+
+                break;
+
+
+            case 2:
                 $.ajax({
                     url: artistToSearch,
                     headers: {
@@ -193,39 +232,7 @@ searchButton.addEventListener("click", function getUserSearch() {
                 });
                 break;
 
-
             case 3:
-                $.ajax({
-                    url: artistToSearch,
-                    headers: {
-                        'Authorization': 'Bearer ' + access_token
-                    },
-                    success: function (response) {
-
-
-                        //var data = new google.visualization.DataTable();
-                        data1 = new google.visualization.DataTable();
-                        data1.addColumn('string', 'Genre');
-                        data1.addColumn('number', 'Num');
-                        response.artists.items[0].genres.forEach(element => {
-                            //console.log(element);
-                            data1.addRow([element, 1]);
-                        });
-
-                        options1 = {
-                            title: response.artists.items[0].name + "'s Genres of Music",
-                            is3D: true,
-                            legend: { position: "bottom" },
-                        };
-
-                        graph1 = new google.visualization.PieChart(document.getElementById('graphs'));
-                        graph1.draw(data1, options1);
-                    }
-
-                });
-                break;
-
-            case 2:
                 $.ajax({
                     url: artistToSearch,
                     headers: {
@@ -294,9 +301,59 @@ searchButton.addEventListener("click", function getUserSearch() {
                     }
                 });
                 break;
+            case 1:
+                $.ajax({
+                    url: artistToSearch,
+                    headers: {
+                        'Authorization': 'Bearer ' + access_token
+                    },
+                    success: function (response) {
+                        artistID = response.artists.items[0].id;
+                        var albumSearch = "https://api.spotify.com/v1/artists/" + artistID + "/albums?include_groups=album&market=US&limit=50"
+                        $.ajax({
+                            url: albumSearch,
+                            headers: {
+                                'Authorization': 'Bearer ' + access_token
+                            },
+                            success: function (response) {
+                                //console.log(response);
+
+                                //var data = new google.visualization.DataTable();
+                                data4 = new google.visualization.DataTable();
+                                data4.addColumn('string', 'Album');
+                                data4.addColumn('number', 'Release Date');
+                                response.items.forEach(element => {
+                                    console.log(element.release_date);
+                                    var year = element.release_date.substring(0, 4);
+                                    data4.addRow([element.name, parseInt(year)]);
+                                });
+
+                                options4 = {
+                                    title: artistName + "'s Albums per year",
+                                    is3D: true,
+                                    legend: { position: "bottom" },
+                                    bar: {
+                                        groupWidth: "50%"
+                                    },
+                                    hAxis: {
+                                        title: "(Hover over points to see albums)",
+                                        textPosition: 'none'
+                                    }
+                                };
+
+                                graph4 = new google.visualization.ScatterChart(document.getElementById('graphs'));
+                                graph4.draw(data4, options4);
+                            }
+                        });
+
+                    }
+                });
+                break;
+
+
         }
         clicks++;
-        if (clicks > 3)
+        if (clicks > 4)
             clicks = 1;
         console.log(clicks);
     };
