@@ -140,6 +140,8 @@ searchButton.addEventListener("click", function getUserSearch() {
                 title: response.artists.items[0].name + "'s Genres of Music",
                 is3D: true,
                 legend: { position: "bottom" },
+                fontName: 'Bitter',
+                fontSize: '15'
             };
 
             graph1 = new google.visualization.PieChart(document.getElementById('graphs'));
@@ -172,6 +174,8 @@ searchButton.addEventListener("click", function getUserSearch() {
                             title: response.artists.items[0].name + "'s Genres of Music",
                             is3D: true,
                             legend: { position: "bottom" },
+                            fontName: 'Bitter',
+                            fontSize: '15'
                         };
 
                         graph1 = new google.visualization.PieChart(document.getElementById('graphs'));
@@ -220,7 +224,10 @@ searchButton.addEventListener("click", function getUserSearch() {
                                     hAxis: {
                                         title: "(Hover over bars to see numbers)",
                                         textPosition: 'none'
-                                    }
+                                    },
+                                    fontName: 'Bitter',
+                                    fontSize: '15'
+                                    
                                 };
 
                                 graph2 = new google.visualization.BarChart(document.getElementById('graphs'));
@@ -277,6 +284,8 @@ searchButton.addEventListener("click", function getUserSearch() {
                                                 },
                                                 orientation: "horizontal",
                                                 pointSize: 5,
+                                                fontName: 'Bitter',
+                                                fontSize: '15', 
                                                 hAxis: {
                                                     title: "(Hover over points to see popularity)",
                                                     textPosition: 'none'
@@ -338,7 +347,9 @@ searchButton.addEventListener("click", function getUserSearch() {
                                     hAxis: {
                                         title: "(Hover over points to see albums)",
                                         textPosition: 'none'
-                                    }
+                                    },
+                                    fontName: 'Bitter',
+                                    fontSize: '15'
                                 };
 
                                 graph4 = new google.visualization.ScatterChart(document.getElementById('graphs'));
