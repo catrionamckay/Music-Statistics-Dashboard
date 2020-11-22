@@ -136,8 +136,52 @@ searchButton.addEventListener("click", function getUserSearch() {
                 legend: { position: "bottom" },
             };
 
+
+            artistID = response.artists.items[0].id;
+            artistAlbumSearch = "https://api.spotify.com/v1/artists/" + artistID + "/albums?include_groups=album,single";
+            $.ajax({
+                url: artistAlbumSearch,
+                headers: {
+                    'Authorization': 'Bearer ' + access_token
+                },
+                success: function (response) {
+                    response.items.forEach(element => {
+                        albumSearch = "https://api.spotify.com/v1/albums/"+element.id;
+                        $.ajax({
+                            url: albumSearch,
+                            headers: {
+                                'Authorization': 'Bearer ' + access_token
+                            },
+                            success: function(response){
+                                console.log("Album: "+ response.name);
+                                response.genres.forEach(element => {
+                                    var add = true;
+                                    for(i = 0; i < data1.getNumberOfRows(); i++){
+                                        //console.log(data1[i][0]);
+                                        if(data1.getValue(i, 0) === element){
+                                            var newValue = data1.getValue(i, 1) + 1;
+                                            data1.setValue(i,1, newValue);
+                                            add = false;
+                                        }
+                                        //console.log(index);
+                                    };
+                                    if(add == true){
+                                        data1.addRow([element, 1]);
+                                    }
+                                });
+                                /*if(response.genres.length === 0){
+                                    console.log("No genres");
+                                }*/
+                                graph1.draw(data1, options1);
+                            }
+                        });
+                    });
+                } 
+            });
+
             graph1 = new google.visualization.PieChart(document.getElementById('graphs'));
             graph1.draw(data1, options1);
+            console.log("pie graph drawn.")
         }
 
     });
@@ -211,12 +255,54 @@ searchButton.addEventListener("click", function getUserSearch() {
                             //console.log(element);
                             data1.addRow([element, 1]);
                         });
-
+                        
                         options1 = {
                             title: response.artists.items[0].name + "'s Genres of Music",
                             is3D: true,
                             legend: { position: "bottom" },
                         };
+
+                        artistID = response.artists.items[0].id;
+                        artistAlbumSearch = "https://api.spotify.com/v1/artists/" + artistID + "/albums?include_groups=album,single";
+                            $.ajax({
+                            url: artistAlbumSearch,
+                            headers: {
+                                'Authorization': 'Bearer ' + access_token
+                            },
+                            success: function (response) {
+                                response.items.forEach(element => {
+                                    albumSearch = "https://api.spotify.com/v1/albums/"+element.id;
+                                    $.ajax({
+                                        url: albumSearch,
+                                        headers: {
+                                            'Authorization': 'Bearer ' + access_token
+                                        },
+                                        success: function(response){
+                                            console.log("Album: "+ response.name);
+                                            response.genres.forEach(element => {
+                                                var add = true;
+                                                for(i = 0; i < data1.getNumberOfRows(); i++){
+                                                    //console.log(data1[i][0]);
+                                                    if(data1.getValue(i, 0) === element){
+                                                        var newValue = data1.getValue(i, 1) + 1;
+                                                        data1.setValue(i,1, newValue);
+                                                        add = false;
+                                                    }
+                                                    //console.log(index);
+                                                };
+                                                if(add == true){
+                                                    data1.addRow([element, 1]);
+                                                }
+                                            });
+                                            /*if(response.genres.length === 0){
+                                                console.log("No genres");
+                                            }*/
+                                            graph1.draw(data1, options1);
+                                        }
+                                    });
+                                });
+                            } 
+                        });
 
                         graph1 = new google.visualization.PieChart(document.getElementById('graphs'));
                         graph1.draw(data1, options1);
@@ -289,7 +375,7 @@ searchButton.addEventListener("click", function getUserSearch() {
         },
         success: function (response) {
             artistID = response.artists.items[0].id;
-            var albumSearch = "https://api.spotify.com/v1/artists/" + artistID + "/albums?include_groups=album&market=US&limit=50"
+            var albumSearch = "https://api.spotify.com/v1/artists/" + artistID + "/albums?include_groups=album,single"
             $.ajax({
                 url: albumSearch,
                 headers: {
@@ -317,7 +403,7 @@ searchButton.addEventListener("click", function getUserSearch() {
         },
         success: function (response) {
             artistID = response.artists.items[0].id;
-            var albumSearch = "https://api.spotify.com/v1/artists/" + artistID + "/albums?include_groups=album&market=US&limit=50"
+            var albumSearch = "https://api.spotify.com/v1/artists/" + artistID + "/albums?include_groups=album,single";
             $.ajax({
                 url: albumSearch,
                 headers: {
@@ -342,46 +428,46 @@ searchButton.addEventListener("click", function getUserSearch() {
                     response.items.forEach(album => {
                         if(document.getElementById(album.name.replace(/[ :()]/g, '-')) === null){
                            albumID = album.id;
-                        albumName = document.createElement("button");
-                        listitem = document.createElement("li");
-                        albumName.value = album.name;
-                        albumName.innerHTML = album.name;
+                            albumName = document.createElement("button");
+                            listitem = document.createElement("li");
+                            albumName.value = album.name;
+                            albumName.innerHTML = album.name;
                         
-                        tracks = "https://api.spotify.com/v1/albums/"+albumID+"/tracks";
-                        $.ajax({
-                            url: tracks,
-                            headers: {
-                                'Authorization': 'Bearer ' + access_token
-                            },
-                            success: function(response){
-                                var trackList = document.createElement("ul");
-                                var trackbtn;
-                                var trackName;
-                                response.items.forEach(track => {
-                                    trackbtn = document.createElement("button");
-                                    trackName = document.createElement("li");
-                                    trackbtn.value = track.name;
-                                    trackbtn.innerHTML = track.name;
-                                    trackName.appendChild(trackbtn);
-                                    listitem.appendChild(trackName);
-                                    trackList.appendChild(trackName);
-                                    trackList.style.display = 'none';
-                                });
-                                trackList.classList.add("track-list");
-                                document.getElementById(album.name.replace(/[ :()]/g, '-')).appendChild(trackList);
+                            tracks = "https://api.spotify.com/v1/albums/"+albumID+"/tracks";
+                            $.ajax({
+                                url: tracks,
+                                headers: {
+                                    'Authorization': 'Bearer ' + access_token
+                                },
+                                success: function(response){
+                                    var trackList = document.createElement("ul");
+                                    var trackbtn;
+                                    var trackName;
+                                    response.items.forEach(track => {
+                                        trackbtn = document.createElement("button");
+                                        trackName = document.createElement("li");
+                                        trackbtn.value = track.name;
+                                        trackbtn.innerHTML = track.name;
+                                        trackName.appendChild(trackbtn);
+                                        listitem.appendChild(trackName);
+                                        trackList.appendChild(trackName);
+                                        trackList.style.display = 'none';
+                                    });
+                                    trackList.classList.add("track-list");
+                                    document.getElementById(album.name.replace(/[ :()]/g, '-')).appendChild(trackList);
                             
-                            }
-                        });
+                                }
+                            });
 
-                        albumDiv.appendChild(albumName);
-                        albumDiv.setAttribute("class", "albumbtn");
-                        listitem.setAttribute("id", album.name.replace(/[ :()]/g, '-'));
-                        listitem.setAttribute("class", "albumLi");
-                        listitem.setAttribute("onclick", "toggleTracks(this);");
-                        listitem.appendChild(albumName);
+                            albumDiv.appendChild(albumName);
+                            albumDiv.setAttribute("class", "albumbtn");
+                            listitem.setAttribute("id", album.name.replace(/[ :()]/g, '-'));
+                            listitem.setAttribute("class", "albumLi");
+                            listitem.setAttribute("onclick", "toggleTracks(this);");
+                            listitem.appendChild(albumName);
 
                         
-                        albumlist.appendChild(listitem);
+                            albumlist.appendChild(listitem);
                         
                         }
 
