@@ -111,7 +111,7 @@ searchButton.addEventListener("click", function getUserSearch() {
 
             //console.log(response);
             artistName = response.artists.items[0].name;
-            document.getElementById("loggedinTitle").innerHTML = response.artists.items[0].name;
+            document.getElementById("artist").innerHTML = response.artists.items[0].name;
             document.getElementById("fol").innerHTML = reformatFollowerCount(response.artists.items[0].followers.total);
             //console.log(response.artists.items[0].images[1].url);
             document.getElementById("ArtistPic").setAttribute("src", response.artists.items[0].images[2].url);
@@ -585,6 +585,14 @@ function relatedArtistSearch(value) {
     searchInput.value = value;
     searchButton.click();
 }
+function resizeGraph(){
+    graph1.draw(data1,options1);
+    graph2.draw(data2,options2);
+    graph3.draw(data3,options3);
+    graph4.draw(data4,options4);
+}
+window.onload = resizeGraph;
+window.onresize = resizeGraph;
 
 
 
