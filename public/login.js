@@ -43,6 +43,9 @@ google.charts.load("current", { packages: ["histogram"] });
                     $('#artist').hide();
                     $('#row-3').hide();
                     $('#related-artists').hide();
+                    $('#graphnavbut').hide();
+                    
+
 
                 }
             });
@@ -50,6 +53,7 @@ google.charts.load("current", { packages: ["histogram"] });
             // render initial screen
             $('#login').show();
             $('#loggedin').hide();
+            
 
         }
 
@@ -86,13 +90,14 @@ var graph4;
 var data4;
 var options4;
 
-let graphloc = document.getElementById("graphs")
+let graphloc = document.getElementById("graphnavbut")
 var clicks = 1;
 searchButton.addEventListener("click", function getUserSearch() {
     clicks = 1;
     $('#artist').show();
     $('#row-3').show();
     $('#related-artists').show();
+    $('#graphnavbut').show();
     var artistID = "";
     var x = document.querySelector("#artist-name");
 
