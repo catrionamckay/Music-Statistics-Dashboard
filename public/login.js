@@ -42,6 +42,7 @@ google.charts.load("current", { packages: ["corechart"] });
                     $('#artist').hide();
                     $('#row-3').hide();
                     $('#related-artists').hide();
+                    $('#search-section').show();
 
                 }
             });
@@ -49,6 +50,7 @@ google.charts.load("current", { packages: ["corechart"] });
             // render initial screen
             $('#login').show();
             $('#loggedin').hide();
+            $('#search-section').hide();
 
         }
 

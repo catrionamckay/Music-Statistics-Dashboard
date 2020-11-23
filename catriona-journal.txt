@@ -19,3 +19,7 @@ didn't work. Related artists when clicked on will go to their page.
 I learned that the Spotify API doesn't use the genre field that is returned when you get an albums info. 
 I tested the function by using an array of strings and it worked then so if Spotify ever ever does use the genre 
 field for albums it would work.
+
+11/23/20
+    Adjusted index.html so that the "Music Statistics Dashboard" shows before people login. The search button doesn't show up
+until after the user logs in.

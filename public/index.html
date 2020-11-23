@@ -13,6 +13,20 @@
 <body>
   <div>
     <!-- This is what the page is before you log in.-->
+
+    <div id="search-bar" class="row" id="row-1">
+      <!--The name of the dashboard is displayed here-->
+      <div class="col-6">
+        <h1>Music Statistics Dashboard</h1>
+      </div>
+
+      <!--This div holds the search input-->
+      <div class="col-6" id="search-section">
+        <input type="text" id="artist-name">
+        <input type="button" name="search" value="Search" id="search">
+      </div>
+    </div>
+
     <div id="login">
       <h1>Music Stats Dashboard</h1>
       <a href="/login" class="btn btn-primary">Please log in with Spotify</a>
@@ -25,19 +39,7 @@
 
     <!-- This is what the page is after you log in.-->
     <div id="loggedin" class="container-fluid">
-      <!--This is the header where you can search for artists.-->
-      <div id="search-bar" class="row" id="row-1">
-        <!--The name of the dashboard is displayed here-->
-        <div class="col-6">
-          <h1>Music Statistics Dashboard</h1>
-        </div>
-
-        <!--This div holds the search input-->
-        <div class="col-6" id="search-section">
-          <input type="text" id="artist-name">
-          <input type="button" name="search" value="Search" id="search">
-        </div>
-      </div>
+      
 
 
       <!--This is where the artist name will be displayed-->
@@ -104,6 +106,7 @@
           <p>Related artists here</p>
         </div>
       </div>
+
       <footer>
         <p>Created by Catriona McKay and Christopher Renslow</p>
         <p id="PIDescription">*The popularity of the artist.

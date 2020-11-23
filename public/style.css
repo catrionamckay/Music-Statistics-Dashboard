@@ -66,6 +66,8 @@ ul{
   font-size: 2em;
   position: relative;
   height: 50%;
+  margin: 0px;
+  padding-top: 20px;
 }
 
 #login{
@@ -149,6 +151,7 @@ footer{
   height: 400px;
   overflow:hidden;
 }
+
 
 .artist-div{
   width: 200px;
