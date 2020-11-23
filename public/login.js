@@ -1,6 +1,6 @@
 var access_token;
 google.charts.load("current", { packages: ["corechart"] });
-google.charts.load("current", { packages: ["timeline"] });
+google.charts.load("current", { packages: ["histogram"] });
 //google.charts.setOnLoadCallback(drawChart);
 
 (function () {
@@ -330,7 +330,10 @@ searchButton.addEventListener("click", function getUserSearch() {
                                 //var data = new google.visualization.DataTable();
                                 data4 = new google.visualization.DataTable();
                                 data4.addColumn('string', 'Album');
-                                data4.addColumn('number', 'Release Date');
+                                data4.addColumn('number', 'Release');
+                                var start = response.items[response.total-1].release_date.substring(0,4);
+                                console.log(start);
+                                var end = response.items[0].release_date.substring(0,4);
                                 response.items.forEach(element => {
                                     console.log(element.release_date);
                                     var year = element.release_date.substring(0, 4);
@@ -345,14 +348,20 @@ searchButton.addEventListener("click", function getUserSearch() {
                                         groupWidth: "50%"
                                     },
                                     hAxis: {
-                                        title: "(Hover over points to see albums)",
+                                        title: "Album Releases per year from "+ start+ "-" + end,
                                         textPosition: 'none'
+                                        
                                     },
                                     fontName: 'Bitter',
-                                    fontSize: '15'
+                                    fontSize: '15',
+                                    histogram: { 
+                                        bucketSize: 1,
+                                        
+                                    }
+
                                 };
 
-                                graph4 = new google.visualization.ScatterChart(document.getElementById('graphs'));
+                                graph4 = new google.visualization.Histogram(document.getElementById('graphs'));
                                 graph4.draw(data4, options4);
                             }
                         });
