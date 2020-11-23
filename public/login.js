@@ -263,10 +263,10 @@ searchButton.addEventListener("click", function getUserSearch() {
                                 data3 = new google.visualization.DataTable();
                                 data3.addColumn('string', 'Album');
                                 data3.addColumn('number', 'Popularity');
-                                //console.log(albums);
-                                for (var i = 0; i < albums.length; i++) {
+                                //console.log(albums[5]);
+                                for (var i = albums.length-1; i > 0; i--) {
                                     let albumtoSearch = "https://api.spotify.com/v1/albums/" + albums[i];
-                                    //console.log(albumtoSearch);
+                                    console.log(i);
                                     $.ajax({
                                         url: albumtoSearch,
                                         headers: {
@@ -292,9 +292,10 @@ searchButton.addEventListener("click", function getUserSearch() {
                                                 }
                                             };
                                             //console.log(respAlbums.name);
-                                            data3.addRow([respAlbums.name, respAlbums.popularity]);
+                                            data3.addRow([respAlbums.name +" (" +respAlbums.release_date+ ")", respAlbums.popularity]);
                                             graph3 = new google.visualization.LineChart(document.getElementById('graphs'));
-                                            graph3.draw(data3, options3)
+                                            graph3.draw(data3, options3);
+                                            
 
 
                                         }
