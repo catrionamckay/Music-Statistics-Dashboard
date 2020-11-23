@@ -1,5 +1,6 @@
 var access_token;
 google.charts.load("current", { packages: ["corechart"] });
+google.charts.load("current", { packages: ["histogram"] });
 //google.charts.setOnLoadCallback(drawChart);
 
 (function () {
@@ -82,6 +83,11 @@ var graph3;
 var data3;
 var options3;
 
+//graph3 global varibles for future use
+var graph4;
+var data4;
+var options4;
+
 let graphloc = document.getElementById("graphs")
 var clicks = 1;
 searchButton.addEventListener("click", function getUserSearch() {
@@ -107,7 +113,7 @@ searchButton.addEventListener("click", function getUserSearch() {
 
             //console.log(response);
             artistName = response.artists.items[0].name;
-            document.getElementById("loggedinTitle").innerHTML = response.artists.items[0].name;
+            document.getElementById("artist").innerHTML = response.artists.items[0].name;
             document.getElementById("fol").innerHTML = reformatFollowerCount(response.artists.items[0].followers.total);
             //console.log(response.artists.items[0].images[1].url);
             document.getElementById("ArtistPic").setAttribute("src", response.artists.items[0].images[2].url);
@@ -136,6 +142,8 @@ searchButton.addEventListener("click", function getUserSearch() {
                 title: response.artists.items[0].name + "'s Genres of Music",
                 is3D: true,
                 legend: { position: "bottom" },
+                fontName: 'Bitter',
+                fontSize: '15'
             };
 
 
@@ -190,57 +198,7 @@ searchButton.addEventListener("click", function getUserSearch() {
     graphloc.onclick = function () {
 
         switch (clicks) {
-            case 1:
-                $.ajax({
-                    url: artistToSearch,
-                    headers: {
-                        'Authorization': 'Bearer ' + access_token
-                    },
-                    success: function (response) {
-                        artistID = response.artists.items[0].id;
-                        var albumSearch = "https://api.spotify.com/v1/artists/" + artistID + "/albums?include_groups=album&market=US&limit=50"
-                        $.ajax({
-                            url: albumSearch,
-                            headers: {
-                                'Authorization': 'Bearer ' + access_token
-                            },
-                            success: function (response) {
-                                //console.log(response);
-
-                                //var data = new google.visualization.DataTable();
-                                data2 = new google.visualization.DataTable();
-                                data2.addColumn('string', 'Album');
-                                data2.addColumn('number', 'Songs Per Album');
-                                response.items.forEach(element => {
-                                    //console.log(element.name);
-                                    data2.addRow([element.name, element.total_tracks]);
-                                });
-
-                                options2 = {
-                                    title: artistName + "'s Songs per Album",
-                                    //is3D: true,
-                                    legend: { position: "bottom" },
-                                    bar: {
-                                        groupWidth: "50%"
-                                    },
-                                    orientation: "horizontal",
-                                    hAxis: {
-                                        title: "(Hover over bars to see numbers)",
-                                        textPosition: 'none'
-                                    }
-                                };
-
-                                graph2 = new google.visualization.BarChart(document.getElementById('graphs'));
-                                graph2.draw(data2, options2);
-                            }
-                        });
-
-                    }
-                });
-                break;
-
-
-            case 3:
+            case 4:
                 $.ajax({
                     url: artistToSearch,
                     headers: {
@@ -257,16 +215,18 @@ searchButton.addEventListener("click", function getUserSearch() {
                             //console.log(element);
                             data1.addRow([element, 1]);
                         });
-                        
+
                         options1 = {
                             title: response.artists.items[0].name + "'s Genres of Music",
                             is3D: true,
                             legend: { position: "bottom" },
+                            fontName: 'Bitter',
+                            fontSize: '15'
                         };
 
                         artistID = response.artists.items[0].id;
                         artistAlbumSearch = "https://api.spotify.com/v1/artists/" + artistID + "/albums?include_groups=album,single";
-                            $.ajax({
+                        $.ajax({
                             url: artistAlbumSearch,
                             headers: {
                                 'Authorization': 'Bearer ' + access_token
@@ -313,6 +273,7 @@ searchButton.addEventListener("click", function getUserSearch() {
                 });
                 break;
 
+
             case 2:
                 $.ajax({
                     url: artistToSearch,
@@ -331,15 +292,15 @@ searchButton.addEventListener("click", function getUserSearch() {
                                 //console.log(response);
 
                                 //var data = new google.visualization.DataTable();
-                                data3 = new google.visualization.DataTable();
-                                data3.addColumn('string', 'Album');
-                                data3.addColumn('number', 'Songs Per Album');
+                                data2 = new google.visualization.DataTable();
+                                data2.addColumn('string', 'Album');
+                                data2.addColumn('number', 'Songs Per Album');
                                 response.items.forEach(element => {
                                     //console.log(element.name);
-                                    data3.addRow([element.name, element.total_tracks]);
+                                    data2.addRow([element.name, element.total_tracks]);
                                 });
 
-                                options3 = {
+                                options2 = {
                                     title: artistName + "'s Songs per Album",
                                     //is3D: true,
                                     legend: { position: "bottom" },
@@ -350,20 +311,157 @@ searchButton.addEventListener("click", function getUserSearch() {
                                     hAxis: {
                                         title: "(Hover over bars to see numbers)",
                                         textPosition: 'none'
-                                    }
+                                    },
+                                    fontName: 'Bitter',
+                                    fontSize: '15'
+                                    
                                 };
 
-                                graph3 = new google.visualization.LineChart(document.getElementById('graphs'));
-                                graph3.draw(data3, options3);
+                                graph2 = new google.visualization.BarChart(document.getElementById('graphs'));
+                                graph2.draw(data2, options2);
                             }
                         });
 
                     }
                 });
                 break;
+
+            case 3:
+                $.ajax({
+                    url: artistToSearch,
+                    headers: {
+                        'Authorization': 'Bearer ' + access_token
+                    },
+                    success: function (response) {
+                        artistID = response.artists.items[0].id;
+                        var albumSearch = "https://api.spotify.com/v1/artists/" + artistID + "/albums?include_groups=album&market=US&limit=50"
+                        $.ajax({
+                            url: albumSearch,
+                            headers: {
+                                'Authorization': 'Bearer ' + access_token
+                            },
+                            success: function (response) {
+                                var albums = [];
+                                var count = 0;
+                                response.items.forEach(element => {
+                                    albums[count] = element.id;
+                                    count++;
+                                })
+                                data3 = new google.visualization.DataTable();
+                                data3.addColumn('string', 'Album');
+                                data3.addColumn('number', 'Popularity');
+                                //console.log(albums[5]);
+                                for (var i = albums.length-1; i > 0; i--) {
+                                    let albumtoSearch = "https://api.spotify.com/v1/albums/" + albums[i];
+                                    console.log(i);
+                                    $.ajax({
+                                        url: albumtoSearch,
+                                        headers: {
+                                            'Authorization': 'Bearer ' + access_token
+                                        },
+                                        success: function (respAlbums) {
+                                            //console.log(respAlbums.popularity);
+
+                                            options3 = {
+                                                title: artistName + "'s Popularity of Albums",
+                                                //is3D: true,
+                                                legend: { position: "bottom" },
+                                                bar: {
+                                                    groupWidth: "50%"
+                                                },
+                                                orientation: "horizontal",
+                                                pointSize: 5,
+                                                fontName: 'Bitter',
+                                                fontSize: '15', 
+                                                hAxis: {
+                                                    title: "(Hover over points to see popularity)",
+                                                    textPosition: 'none'
+                                                }
+                                            };
+                                            //console.log(respAlbums.name);
+                                            data3.addRow([respAlbums.name +" (" +respAlbums.release_date+ ")", respAlbums.popularity]);
+                                            graph3 = new google.visualization.LineChart(document.getElementById('graphs'));
+                                            graph3.draw(data3, options3);
+                                            
+
+
+                                        }
+
+                                    });
+
+                                }
+
+
+                            }
+                        });
+                        
+                    }
+                });
+                break;
+            case 1:
+                $.ajax({
+                    url: artistToSearch,
+                    headers: {
+                        'Authorization': 'Bearer ' + access_token
+                    },
+                    success: function (response) {
+                        artistID = response.artists.items[0].id;
+                        var albumSearch = "https://api.spotify.com/v1/artists/" + artistID + "/albums?include_groups=album&market=US&limit=50"
+                        $.ajax({
+                            url: albumSearch,
+                            headers: {
+                                'Authorization': 'Bearer ' + access_token
+                            },
+                            success: function (response) {
+                                //console.log(response);
+
+                                //var data = new google.visualization.DataTable();
+                                data4 = new google.visualization.DataTable();
+                                data4.addColumn('string', 'Album');
+                                data4.addColumn('number', 'Release');
+                                var start = response.items[response.total-1].release_date.substring(0,4);
+                                console.log(start);
+                                var end = response.items[0].release_date.substring(0,4);
+                                response.items.forEach(element => {
+                                    console.log(element.release_date);
+                                    var year = element.release_date.substring(0, 4);
+                                    data4.addRow([element.name, parseInt(year)]);
+                                });
+
+                                options4 = {
+                                    title: artistName + "'s Albums per year",
+                                    is3D: true,
+                                    legend: { position: "bottom" },
+                                    bar: {
+                                        groupWidth: "50%"
+                                    },
+                                    hAxis: {
+                                        title: "Album Releases per year from "+ start+ "-" + end,
+                                        textPosition: 'none'
+                                        
+                                    },
+                                    fontName: 'Bitter',
+                                    fontSize: '15',
+                                    histogram: { 
+                                        bucketSize: 1,
+                                        
+                                    }
+
+                                };
+
+                                graph4 = new google.visualization.Histogram(document.getElementById('graphs'));
+                                graph4.draw(data4, options4);
+                            }
+                        });
+
+                    }
+                });
+                break;
+
+
         }
         clicks++;
-        if (clicks > 3)
+        if (clicks > 4)
             clicks = 1;
         console.log(clicks);
     };
@@ -428,20 +526,20 @@ searchButton.addEventListener("click", function getUserSearch() {
                     document.getElementById("albums").appendChild(header);
                     document.getElementById("albums").appendChild(albumDiv);
                     response.items.forEach(album => {
-                        if(document.getElementById(album.name.replace(/[ :()]/g, '-')) === null){
-                           albumID = album.id;
+                        if (document.getElementById(album.name.replace(/[ :()]/g, '-')) === null) {
+                            albumID = album.id;
                             albumName = document.createElement("button");
                             listitem = document.createElement("li");
                             albumName.value = album.name;
                             albumName.innerHTML = album.name;
-                        
-                            tracks = "https://api.spotify.com/v1/albums/"+albumID+"/tracks";
+
+                            tracks = "https://api.spotify.com/v1/albums/" + albumID + "/tracks";
                             $.ajax({
                                 url: tracks,
                                 headers: {
                                     'Authorization': 'Bearer ' + access_token
                                 },
-                                success: function(response){
+                                success: function (response) {
                                     var trackList = document.createElement("ul");
                                     var trackbtn;
                                     var trackName;
@@ -457,7 +555,6 @@ searchButton.addEventListener("click", function getUserSearch() {
                                     });
                                     trackList.classList.add("track-list");
                                     document.getElementById(album.name.replace(/[ :()]/g, '-')).appendChild(trackList);
-                            
                                 }
                             });
 
@@ -468,9 +565,9 @@ searchButton.addEventListener("click", function getUserSearch() {
                             listitem.setAttribute("onclick", "toggleTracks(this);");
                             listitem.appendChild(albumName);
 
-                        
+
                             albumlist.appendChild(listitem);
-                        
+
                         }
 
                     });
@@ -489,7 +586,7 @@ searchButton.addEventListener("click", function getUserSearch() {
         },
         success: function (response) {
             artistID = response.artists.items[0].id;
-            var relatedArtists =  "https://api.spotify.com/v1/artists/"+artistID+"/related-artists";
+            var relatedArtists = "https://api.spotify.com/v1/artists/" + artistID + "/related-artists";
             var relatedRow = document.getElementById("related-artists");
             relatedRow.innerHTML = '';
             $.ajax({
@@ -497,7 +594,7 @@ searchButton.addEventListener("click", function getUserSearch() {
                 headers: {
                     'Authorization': 'Bearer ' + access_token
                 },
-                success: function(response){
+                success: function (response) {
                     var artistDiv;
                     var artistPic;
                     var artistName;
@@ -579,11 +676,19 @@ function toggleTracks(element) {
 
 }
 
-function relatedArtistSearch(value){
+function relatedArtistSearch(value) {
     var searchInput = document.getElementById("artist-name");
     searchInput.value = value;
     searchButton.click();
 }
+function resizeGraph(){
+    graph1.draw(data1,options1);
+    graph2.draw(data2,options2);
+    graph3.draw(data3,options3);
+    graph4.draw(data4,options4);
+}
+window.onload = resizeGraph;
+window.onresize = resizeGraph;
 
 
 
