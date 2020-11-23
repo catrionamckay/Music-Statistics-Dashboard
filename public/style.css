@@ -186,5 +186,10 @@ footer{
 }
 #graphnav{
   background-color: #89A9D2;
+  
+}
+#gitlink{
+  color: black;
+  text-decoration: underline;
 }
 
