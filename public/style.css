@@ -1,7 +1,8 @@
 
-html{
+html, body{
   background-color: #89A9D2;
 }
+
 
 ul{
   overflow: hidden;
@@ -64,18 +65,26 @@ ul{
   font-family: 'Bitter', serif;
 }
 
-#login > h1{
+#login-btn{
+  background-color: #1C5D99;
+  width: 250px;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  padding-bottom: 20px;
+  border-radius: 20%;
+}
+
+#login-btn > h1{
   font-size: 2em;
   position: relative;
   height: 50%;
   margin: 0px;
   padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-#login{
-  background-color: #1c2541;
-  
-}
 
 #row-3{
   padding: 0px;

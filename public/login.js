@@ -3,6 +3,8 @@ google.charts.load("current", { packages: ["corechart"] });
 google.charts.load("current", { packages: ["histogram"] });
 //google.charts.setOnLoadCallback(drawChart);
 
+var lastArtist = "Ed Sheeran";
+
 (function () {
 
     /**
@@ -40,9 +42,13 @@ google.charts.load("current", { packages: ["histogram"] });
 
                     $('#login').hide();
                     $('#loggedin').show();
-                    $('#artist').hide();
-                    $('#row-3').hide();
-                    $('#related-artists').hide();
+                    var searchInput = document.getElementById("artist-name");
+                    var previous = sessionStorage.getItem("lastArtist");
+                    if(previous != null){
+                       lastArtist = previous; 
+                    }
+                    searchInput.value = lastArtist;
+                    searchButton.click();
                     $('#search-section').show();
 
                 }
@@ -109,6 +115,9 @@ searchButton.addEventListener("click", function getUserSearch() {
         },
         success: function (response) {
             artistID = response.artists.items[0].id;
+            lastArtist = response.artists.items[0].name;
+            sessionStorage.setItem("lastArtist", response.artists.items[0].name);
+            console.log("Latest Artist: " + lastArtist);
             albumSearch = "https://api.spotify.com/v1/artists/" + artistID + "/albums"
 
             //console.log(response);
