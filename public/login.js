@@ -94,16 +94,19 @@ var graph4;
 var data4;
 var options4;
 
-let graphloc = document.getElementById("graphs")
+let graphloc = document.getElementById("graphnavbut")
 var clicks = 1;
 searchButton.addEventListener("click", function getUserSearch() {
     clicks = 1;
-    $('#artist').show();
-    $('#row-3').show();
-    $('#related-artists').show();
+
     var artistID = "";
     var x = document.querySelector("#artist-name");
-
+    console.log(x.value);
+    if(x.value !== ""){
+        $('#artist').show();
+        $('#row-3').show();
+        $('#related-artists').show();
+        $('#graphnavbut').show();
     x = encodeURI(x.value);
     //console.log(x);
     artistToSearch = "https://api.spotify.com/v1/search?q=" + x + "&type=artist&market=US&limit=1";
@@ -635,6 +638,7 @@ searchButton.addEventListener("click", function getUserSearch() {
     });
 
     document.getElementById("artist-name").value = '';
+}
 
 });
 

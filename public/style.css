@@ -113,8 +113,9 @@ ul{
 
 #artist{
   background-color: #89A9D2;
-  font-size: 4em;
-  padding-left: 20px;
+  padding-top: 7px;
+  font-size: larger;
+  
 }
 
 #graphs{
@@ -189,3 +190,19 @@ footer{
 #ArtistPic{
   border-radius: 50%;
 }
+#graphnav > #graphnavbut{
+  margin-right: 50%;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 5px;
+}
+#graphnav{
+  background-color: #89A9D2;
+  
+}
+#gitlink{
+  color: black;
+  text-decoration: underline;
+}
+
