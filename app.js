@@ -5,6 +5,11 @@
  *
  * For more information, read
  * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
+ * 
+ * 
+ * 
+ * Used as a template for this application under MIT License
+ * 
  */
 
 var express = require('express'); // Express web server framework
