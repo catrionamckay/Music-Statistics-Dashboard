@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang = "en">
 
 <head>
   <link rel="stylesheet" type="text/css"
@@ -24,7 +24,7 @@
 
       <!--This div holds the search input-->
       <div class="col-6" id="search-section">
-        <input type="text" id="artist-name">
+        <input type="text" id="artist-name" placeholder="search artist" aria-label="artist search input">
         <input type="button" name="search" value="Search" id="search">
       </div>
     </div>
@@ -65,7 +65,7 @@
 
         
         <!--This div will show the picture of the artists and their songs/albums-->
-        <div class="col-12 col-sm-3">
+        <div class="col-12 col-sm-3" id = "artist-info">
           <div class="row pic-album">
             <div id="picture" class="col-12">
             <!--This is where the artist name will be displayed-->
@@ -74,7 +74,7 @@
           </div>
           <div class="row pic-album">
             <div id="albums" class="col-12">
-              <h3>Album List:</h3>
+              <h1>Album List:</h1>
             </div>
           </div>
         </div>
@@ -84,23 +84,23 @@
           <div class="row stat-row">
 
             <div class="col-6 col-sm-12 stat">
-              <h2 id="fol"></h2>
-              <p>Followers</p>
+              <h1 id="fol"></h1>
+              <h2>Followers</h2>
             </div>
 
             <div class="col-6 col-sm-12 stat">
-              <h2 id="pop"></h2>
-              <p>Popularity Index*</p>
+              <h1 id="pop"></h1>
+              <h2>Popularity Index*</h2>
             </div>
 
             <div class="col-6 col-sm-12 stat">
-              <h2 id="songs"></h2>
-              <p>Song(s)</p>
+              <h1 id="songs"></h1>
+              <h2>Song(s)</h2>
             </div>
 
             <div class="col-6 col-sm-12 stat">
-              <h2 id="alb"></h2>
-              <p>Album(s)</p>
+              <h1 id="alb"></h1>
+              <h2>Album(s)</h2>
             </div>
           </div>
         </div>

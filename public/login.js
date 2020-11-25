@@ -524,7 +524,7 @@ searchButton.addEventListener("click", function getUserSearch() {
                 success: function (response) {
                     document.getElementById("albums").innerHTML = '';
                     //console.log(response.items);
-                    var header = document.createElement("h3");
+                    var header = document.createElement("h1");
                     var albumName;
                     var albumlist = document.createElement("ul");
                     var listitem;
@@ -544,37 +544,39 @@ searchButton.addEventListener("click", function getUserSearch() {
                             listitem = document.createElement("li");
                             albumName.value = album.name;
                             albumName.innerHTML = album.name;
+                            albumName.setAttribute("onclick", "toggleTracks(this);");
 
                             tracks = "https://api.spotify.com/v1/albums/" + albumID + "/tracks";
-                            $.ajax({
-                                url: tracks,
-                                headers: {
-                                    'Authorization': 'Bearer ' + access_token
-                                },
-                                success: function (response) {
-                                    var trackList = document.createElement("ul");
-                                    var trackbtn;
-                                    var trackName;
-                                    response.items.forEach(track => {
-                                        trackbtn = document.createElement("button");
-                                        trackName = document.createElement("li");
-                                        trackbtn.value = track.name;
-                                        trackbtn.innerHTML = track.name;
-                                        trackName.appendChild(trackbtn);
-                                        listitem.appendChild(trackName);
-                                        trackList.appendChild(trackName);
-                                        trackList.style.display = 'none';
-                                    });
-                                    trackList.classList.add("track-list");
-                                    document.getElementById(album.name.replace(/[ :()]/g, '-')).appendChild(trackList);
-                                }
-                            });
+                            if(album.album_type != "single"){
+                                $.ajax({
+                                    url: tracks,
+                                    headers: {
+                                        'Authorization': 'Bearer ' + access_token
+                                    },
+                                    success: function (response) {
+                                        var trackList = document.createElement("ul");
+                                        var trackbtn;
+                                        var trackName;
+                                        response.items.forEach(track => {
+                                            trackbtn = document.createElement("button");
+                                            trackName = document.createElement("li");
+                                            trackbtn.value = track.name;
+                                            trackbtn.innerHTML = track.name;
+                                            trackName.appendChild(trackbtn);
+                                            listitem.appendChild(trackName);
+                                            trackList.appendChild(trackName);
+                                            trackList.style.display = 'none';
+                                        });
+                                        trackList.classList.add("track-list");
+                                        document.getElementById(album.name.replace(/[ :()]/g, '-')).appendChild(trackList);
+                                    }
+                                });
+                            }
 
                             albumDiv.appendChild(albumName);
                             albumDiv.setAttribute("class", "albumbtn");
                             listitem.setAttribute("id", album.name.replace(/[ :()]/g, '-'));
                             listitem.setAttribute("class", "albumLi");
-                            listitem.setAttribute("onclick", "toggleTracks(this);");
                             listitem.appendChild(albumName);
 
 
@@ -611,6 +613,7 @@ searchButton.addEventListener("click", function getUserSearch() {
                     var artistPic;
                     var artistName;
                     var text;
+                    var nameHolder;
                     var extendedDiv = document.createElement("div");
                     console.log("successful in getting related Artists.");
                     response.artists.forEach(artist => {
@@ -619,15 +622,20 @@ searchButton.addEventListener("click", function getUserSearch() {
                         //artistDiv.setAttribute("class", "col-12 col-sm-3");
                         //console.log(artist.name);
                         artistName = document.createElement("button");
+                        nameHolder = document.createElement("p");
                         artistName.setAttribute("class", "search-btn");
                         artistName.value = artist.name;
                         artistName.setAttribute("onclick", "relatedArtistSearch(this.value)");
                         artistPic = document.createElement("img");
                         text = document.createTextNode(artist.name);
-                        artistName.appendChild(text);
+                        nameHolder.appendChild(text);
+                        artistName.appendChild(nameHolder);
                         artistPic.setAttribute("src", artist.images[2].url);
+                        artistPic.setAttribute("class", "related-pic");
+                        artistPic.alt = "picture of " + artist.name;
+                        artistName.appendChild(artistPic);
                         artistDiv.appendChild(artistName);
-                        artistDiv.appendChild(artistPic);
+                        //artistDiv.appendChild(artistPic);
                         extendedDiv.appendChild(artistDiv);
                     });
                     extendedDiv.setAttribute("id", "extendedDiv");
