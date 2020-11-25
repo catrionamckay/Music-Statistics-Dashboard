@@ -478,7 +478,7 @@ function populatealbumslist(artistToSearch) {
         success: function (response) {
           document.getElementById("albums").innerHTML = "";
           //console.log(response.items);
-          var header = document.createElement("h3");
+          var header = document.createElement("h1");
           var albumName;
           var albumlist = document.createElement("ul");
           var listitem;
