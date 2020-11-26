@@ -21,7 +21,7 @@ var access_token;
 
 var client_id = 'e284b18998b94cdc8e7e191969965173'; // Your client id
 var client_secret = '01f5261d2fe548098ae4ceeb132d154d'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback/'; // Your redirect uri
+var redirect_uri = 'https://dry-plateau-70481.herokuapp.com/callback/'; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
