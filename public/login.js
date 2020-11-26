@@ -1,4 +1,5 @@
 var access_token;
+alert("What");
 google.charts.load("current", { packages: ["corechart"] });
 google.charts.load("current", { packages: ["histogram"] });
 
