@@ -502,6 +502,7 @@ function populatealbumslist(artistToSearch) {
               albumName.value = album.name;
               albumName.innerHTML = album.name;
               albumName.setAttribute("onclick", "toggleTracks(this);");
+              albumName.setAttribute("class", "btn-transition");
 
               tracks =
                 "https://api.spotify.com/v1/albums/" + albumID + "/tracks";
@@ -520,6 +521,7 @@ function populatealbumslist(artistToSearch) {
                     trackbtn.value = track.name;
                     trackbtn.innerHTML = track.name;
                     trackName.appendChild(trackbtn);
+                    trackbtn.setAttribute("class", "btn-transition");
                     listitem.appendChild(trackName);
                     trackList.appendChild(trackName);
                     trackList.style.display = "none";
