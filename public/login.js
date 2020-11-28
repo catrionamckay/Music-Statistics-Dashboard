@@ -158,7 +158,7 @@ searchButton.addEventListener("click", function getUserSearch() {
                   });
 
                   options4 = {
-                    title: artistName + "'s Albums per year",
+                    title: artistName + "'s LPs per year",
                     is3D: true,
                     legend: { position: "bottom" },
                     backgroundColor: 
@@ -166,7 +166,7 @@ searchButton.addEventListener("click", function getUserSearch() {
                   
                     hAxis: {
                       title:
-                        "Album Releases per year from " + start + "-" + end,
+                        "LP Releases per year from " + start + "-" + end,
                       textPosition: "none",
                     },
                     fontName: "Bitter",
@@ -358,7 +358,7 @@ function creategraph2(artistToSearch) {
           //var data = new google.visualization.DataTable();
           data2 = new google.visualization.DataTable();
           data2.addColumn("string", "Album");
-          data2.addColumn("number", "Songs Per Album");
+          data2.addColumn("number", "Songs Per LP");
           data2.addColumn({role: 'style'})
           response.items.forEach((element) => {
             //console.log(element.name);
@@ -366,7 +366,7 @@ function creategraph2(artistToSearch) {
           });
 
           options2 = {
-            title: artistName + "'s Songs per Album",
+            title: artistName + "'s Songs per LP",
             //is3D: true,
             legend: { position: "bottom" },
             backgroundColor: 
@@ -433,7 +433,7 @@ function creategraph3(artistToSearch) {
                 //console.log(respAlbums.popularity);
 
                 options3 = {
-                  title: artistName + "'s Popularity of Albums",
+                  title: artistName + "'s Popularity of LPs",
                   //is3D: true,
                   legend: { position: "bottom" },
                   backgroundColor: 
@@ -495,7 +495,7 @@ function populatealbumslist(artistToSearch) {
           var albumID;
           var tracks;
 
-          header.innerHTML = "Album(s):";
+          header.innerHTML = "Discography:";
           albumDiv.appendChild(albumlist);
           document.getElementById("albums").appendChild(header);
           document.getElementById("albums").appendChild(albumDiv);
@@ -595,7 +595,7 @@ function populatestaticstats(artistToSearch) {
       var albumSearch =
         "https://api.spotify.com/v1/artists/" +
         artistID +
-        "/albums?include_groups=album,single";
+        "/albums?include_groups=album&";
       $.ajax({
         url: albumSearch,
         headers: {

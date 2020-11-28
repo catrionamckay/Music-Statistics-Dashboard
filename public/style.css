@@ -226,9 +226,21 @@ footer{
   padding: 5px;
   padding-left: 25px;
   padding-right: 25px;
+  border: none;
+}
+#graphnav > #graphnavbut:hover{
+  margin-right: 50%;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 5px;
+  padding-left: 25px;
+  padding-right: 25px;
+  background-color: lightgray;
 }
 #graphnav{
   background-color: #89A9D2;
+  
   
 }
 #gitlink{
@@ -248,5 +260,8 @@ footer{
   footer{
     visibility: hidden;
   }
+}
+#landingfooter{
+  color: black;
 }
 
