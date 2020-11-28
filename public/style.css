@@ -1,69 +1,66 @@
-
-html, body{
-  background-color: #89A9D2;
+html,
+body {
+  background-color: #89a9d2;
 }
 
-
-ul{
+ul {
   overflow: hidden;
   list-style-type: none;
   text-align: left;
-  padding:0px;
+  padding: 0px;
 }
 
-.albumLi{
+.albumLi {
   width: 100%;
   overflow: hidden;
 }
-.albumbtn{
+.albumbtn {
   height: 80%;
   overflow: hidden;
   overflow-y: scroll;
   display: block;
 }
 
-
-.btn-transition{
+.btn-transition {
   background: none;
   border: none;
   width: 100%;
   height: 30px;
   text-align: left;
-  transition: background-color .5s linear .2s;
-  -moz-transition: background-color .5s linear .2s;
-  -ms-transition: background-color .5s linear .2s;
-  -o-transition: background-color .5s linear .2s;
-  -webkit-transition: background-color .5s linear .2s;
-
+  transition: background-color 0.5s linear 0.2s;
+  -moz-transition: background-color 0.5s linear 0.2s;
+  -ms-transition: background-color 0.5s linear 0.2s;
+  -o-transition: background-color 0.5s linear 0.2s;
+  -webkit-transition: background-color 0.5s linear 0.2s;
 }
 
-.btn-transition:hover{
+.btn-transition:hover {
   background-color: rgb(28, 93, 153, 0.5);
 }
 
-.pic-album{
+.pic-album {
   height: 200px;
 }
 
-.stat-row{
+.stat-row {
   height: 100%;
 }
 
-.stat{
+.stat {
   height: 25%;
 }
 
-.stat > h1{
+.stat > h1 {
   color: black;
   font-size: 2em;
 }
 
-.stat > p{
+.stat > p {
   color: black;
   font-size: 1.5em;
 }
 
-.track-list{
+.track-list {
   overflow: hidden;
   padding-left: 15px;
   display: none;
@@ -73,17 +70,17 @@ ul{
   text-align: center;
   color: black;
   padding: 0px;
-  font-family: 'Bitter', serif;
+  font-family: "Bitter", serif;
 }
 
-#login{
-  text-align:center;
+#login {
+  text-align: center;
   color: white;
-  font-family: 'Bitter', serif;
+  font-family: "Bitter", serif;
 }
 
-#login-btn{
-  background-color: #1C5D99;
+#login-btn {
+  background-color: #1c5d99;
   width: 250px;
   margin: 10px;
   margin-left: auto;
@@ -93,7 +90,7 @@ ul{
   border-radius: 20px;
 }
 
-#login-btn > h1{
+#login-btn > h1 {
   font-size: 2em;
   position: relative;
   height: 50%;
@@ -101,71 +98,64 @@ ul{
   padding-top: 20px;
   padding-bottom: 20px;
 }
-#title{
+#title {
   margin-left: 20px;
 }
 
-#row-3{
+#row-3 {
   padding: 0px;
   padding-top: 10px;
 }
 
-
-#search-bar{
+#search-bar {
   text-align: left;
   color: white;
-  background-color:#1C5D99;
+  background-color: #1c5d99;
   text-shadow: 2px 2px black;
-  font-family: 'Bitter', serif;
+  font-family: "Bitter", serif;
 }
 
-#search-section{
+#search-section {
   text-align: right;
   margin: auto;
   color: black;
-  
 }
 
-
-
-
-#artist{
+#artist {
   padding-top: 7px;
   font-size: larger;
 }
 
-#artist-info{
+#artist-info {
   background-color: rgb(28, 93, 153, 0.25);
   border-radius: 20px;
 }
 
-
-#graphs{
-  background-color: #89A9D2;
+#graphs {
+  background-color: #89a9d2;
 }
 
-
-#albums{
+#albums {
   height: 100%;
   text-align: left;
 }
 
-#albums > h1{
+#albums > h1 {
   overflow: hidden;
   font-size: 2em;
   margin: 0px;
   margin-top: 0px;
 }
 
-#static-stats{
+#static-stats {
   color: black;
 }
 
-#static-stats h2{
+#static-stats h2 {
   font-size: 1.5em;
 }
 
-#related-artists{
+#related-artists {
   position: relative;
   overflow: hidden;
   float: center;
@@ -173,19 +163,19 @@ ul{
   margin: 0px;
 }
 
-#extendedDiv{
+#extendedDiv {
   white-space: nowrap;
   overflow: auto;
 }
 
-footer{
+footer {
   position: absolute;
   width: 100%;
   bottom: 0;
-  font-size: 75%
+  font-size: 75%;
 }
 
-.artist-div{
+.artist-div {
   width: 200px;
   display: inline-block;
   vertical-align: top;
@@ -193,32 +183,33 @@ footer{
   padding-right: 10px;
   width: 200px;
 }
-.artist-div button{
+.artist-div button {
   display: flex;
   background: none;
   border: none;
   display: inline-block;
   padding-bottom: 10px;
   border-radius: 10px;
-  transition: background-color .4s linear .2s;
-  -moz-transition: background-color .4s linear .2s;
-  -ms-transition: background-color .4s linear .2s;
-  -o-transition: background-color .4s linear .2s;
-  -webkit-transition: background-color .4s linear .2s;
+  transition: background-color 0.4s linear 0.2s;
+  -moz-transition: background-color 0.4s linear 0.2s;
+  -ms-transition: background-color 0.4s linear 0.2s;
+  -o-transition: background-color 0.4s linear 0.2s;
+  -webkit-transition: background-color 0.4s linear 0.2s;
 }
 
-.artist-div button:hover{
+.artist-div button:hover {
   background-color: rgb(28, 93, 153, 0.25);
 }
 
-.artist-div img{
+.artist-div img {
   border-radius: 50%;
 }
-#ArtistPic, #related-pic{
+#ArtistPic,
+#related-pic {
   border-radius: 50%;
 }
 
-#graphnav > #graphnavbut{
+#graphnav > #graphnavbut {
   margin-right: 50%;
   border-radius: 5px;
   margin-bottom: 20px;
@@ -228,7 +219,7 @@ footer{
   padding-right: 25px;
   border: none;
 }
-#graphnav > #graphnavbut:hover{
+#graphnav > #graphnavbut:hover {
   margin-right: 50%;
   border-radius: 5px;
   margin-bottom: 20px;
@@ -238,30 +229,26 @@ footer{
   padding-right: 25px;
   background-color: lightgray;
 }
-#graphnav{
-  background-color: #89A9D2;
-  
-  
+#graphnav {
+  background-color: #89a9d2;
 }
-#gitlink{
+#gitlink {
   color: black;
   text-decoration: underline;
 }
-#search{
+#search {
   margin-right: 10px;
-
 }
-@media only screen and (max-height: 925px){
-  footer{
+@media only screen and (max-height: 925px) {
+  footer {
     visibility: hidden;
   }
 }
-@media only screen and (max-width: 600px){
-  footer{
+@media only screen and (max-width: 600px) {
+  footer {
     visibility: hidden;
   }
 }
-#landingfooter{
+#landingfooter {
   color: black;
 }
-

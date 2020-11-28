@@ -161,12 +161,10 @@ searchButton.addEventListener("click", function getUserSearch() {
                     title: artistName + "'s LPs per year",
                     is3D: true,
                     legend: { position: "bottom" },
-                    backgroundColor: 
-                    "#89A9D2",
-                  
+                    backgroundColor: "#89A9D2",
+
                     hAxis: {
-                      title:
-                        "LP Releases per year from " + start + "-" + end,
+                      title: "LP Releases per year from " + start + "-" + end,
                       textPosition: "none",
                     },
                     fontName: "Bitter",
@@ -174,7 +172,7 @@ searchButton.addEventListener("click", function getUserSearch() {
                     histogram: {
                       bucketSize: 1,
                     },
-                    colors: ['#1C5D99']
+                    colors: ["#1C5D99"],
                   };
 
                   graph4 = new google.visualization.Histogram(
@@ -277,9 +275,7 @@ function creategraph1(artistToSearch) {
         legend: { position: "bottom" },
         fontName: "Bitter",
         fontSize: "15",
-        backgroundColor: 
-        "#89A9D2",
-      
+        backgroundColor: "#89A9D2",
       };
 
       artistID = response.artists.items[0].id;
@@ -359,19 +355,22 @@ function creategraph2(artistToSearch) {
           data2 = new google.visualization.DataTable();
           data2.addColumn("string", "Album");
           data2.addColumn("number", "Songs Per LP");
-          data2.addColumn({role: 'style'})
+          data2.addColumn({ role: "style" });
           response.items.forEach((element) => {
             //console.log(element.name);
-            data2.addRow([element.name, element.total_tracks, 'color:#1C5D99 ']);
+            data2.addRow([
+              element.name,
+              element.total_tracks,
+              "color:#1C5D99 ",
+            ]);
           });
 
           options2 = {
             title: artistName + "'s Songs per LP",
             //is3D: true,
             legend: { position: "bottom" },
-            backgroundColor: 
-            "#89A9D2",
-          
+            backgroundColor: "#89A9D2",
+
             orientation: "horizontal",
             hAxis: {
               title: "(Hover over bars to see numbers)",
@@ -379,7 +378,7 @@ function creategraph2(artistToSearch) {
             },
             fontName: "Bitter",
             fontSize: "15",
-            colors: ['#1C5D99']
+            colors: ["#1C5D99"],
           };
 
           graph2 = new google.visualization.BarChart(
@@ -418,7 +417,7 @@ function creategraph3(artistToSearch) {
           data3 = new google.visualization.DataTable();
           data3.addColumn("string", "Album");
           data3.addColumn("number", "Popularity");
-          
+
           //console.log(albums[5]);
           for (var i = albums.length - 1; i > -1; i--) {
             let albumtoSearch =
@@ -436,9 +435,8 @@ function creategraph3(artistToSearch) {
                   title: artistName + "'s Popularity of LPs",
                   //is3D: true,
                   legend: { position: "bottom" },
-                  backgroundColor: 
-                    "#89A9D2",
-                  
+                  backgroundColor: "#89A9D2",
+
                   orientation: "horizontal",
                   pointSize: 5,
                   fontName: "Bitter",
@@ -447,7 +445,7 @@ function creategraph3(artistToSearch) {
                     title: "(Hover over points to see popularity)",
                     textPosition: "none",
                   },
-                  colors: ['#1C5D99']
+                  colors: ["#1C5D99"],
                 };
                 //console.log(respAlbums.name);
                 data3.addRow([
