@@ -49,3 +49,9 @@
     commits because we realized github pages only supports static sites. Later that day I tried hosting again using a different branch.
     I ended up getting to work with Heroku after troubleshooting issues with jquery not loading in properly.
     This was the biggest roadblock of the project for me and I was really frustrated.
+
+11-27-20
+
+    Updated some CSS so that things don't go off the screen and made it so the footer is reponsive/doesn't overlap other elements.
+    Figured it would be easier to just hide it when the screen gets smaller because it's not as important. Also updated the graph cycle button CSS and
+    changed some of the titles to our sections so they better represent what's being shown. Reformatted all the files using Prettier as well.

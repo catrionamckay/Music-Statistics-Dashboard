@@ -1,6 +1,6 @@
 var access_token;
 google.charts.load("current", { packages: ["corechart"] });
-google.charts.load("current", { packages: ["histogram"] });
+
 
 var lastArtist = "Ed Sheeran";
 
