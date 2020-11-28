@@ -101,7 +101,9 @@ ul{
   padding-top: 20px;
   padding-bottom: 20px;
 }
-
+#title{
+  margin-left: 20px;
+}
 
 #row-3{
   padding: 0px;
@@ -114,6 +116,7 @@ ul{
   color: white;
   background-color:#1C5D99;
   text-shadow: 2px 2px black;
+  font-family: 'Bitter', serif;
 }
 
 #search-section{
@@ -123,11 +126,7 @@ ul{
   
 }
 
-#loggedinTitle{
-  font-size: 4em;
-  color: white;
-  
-}
+
 
 
 #artist{
@@ -225,6 +224,8 @@ footer{
   margin-bottom: 20px;
   margin-top: 20px;
   padding: 5px;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 #graphnav{
   background-color: #89A9D2;
@@ -233,5 +234,9 @@ footer{
 #gitlink{
   color: black;
   text-decoration: underline;
+}
+#search{
+  margin-right: 10px;
+
 }
 
