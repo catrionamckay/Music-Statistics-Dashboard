@@ -27,3 +27,11 @@ the page is reloaded the artist that was currently displayed. Had to look up how
 
 11/24/20
     Fixed some accessibility issues. Such as contrast, labels, and alt-text. Also made css changes.
+
+11/25/20
+    We tried to get hosting to work on github pages but couldn't because we our dashboard isn't a static page. Chris got it working
+with Heroku.
+
+11/27/20
+    worked on some animations. Added arrows onto the buttons that could expand to show tracks in the album list. Tried to
+make it so the arrow rotated when the button was clicked on but nothing worked yet.

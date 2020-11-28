@@ -1,7 +1,8 @@
 11-04-20
-    Created login page/authorization for spotify's API. Used thier API examples that can
+    Created login page/authorization for spotify's API. Used their API examples that can
     be found on Spotify's API documentation website. Attempted to create a differnt type of
-    authorization page, but decided to stick with the one that had an example to save time.
+    authorization page, but decided to stick with the one that had an example to save time. This was really useful because
+    I don't have any back-end experiences and I thought this would be a major roadblock.
 11-08-20
     Had a team meeting to discuss the app, added a style sheet so we could begin styling the layout
     of the page.
@@ -16,3 +17,41 @@
     Added the bar chart to the layout, created a footer and extra text for the popularity index description
     I tried to create a way to naviagte through different graphs, but Google Charts doesn't like when you
     try to fill data when the container is hidden.
+
+11-18-20
+    I added a way to navigate the different graphs we have on the page but ran in
+    to a problem with how the graphs are rendered. Had a button working but it broke the layout so I removed it.
+
+ 11-19-20
+    Fixed a bug that happened when searching with a blank search field.
+
+11-21-20
+    Added a nice looking font to the page and the graphs using Google Fonts. Also I added the
+    other graphs we had planned. Google charts seemingly had a selection of graphs that would be useful
+    but as the project goes on i'm finding that the selection is pretty limited for what we wanted to do.
+    I wanted to make a timeline of when an artists albums were released but the timeline chart they have only takes
+    certain formats as it's data, and spotify's API didn't have dates in the correct format. I made a work around chart that looks ok.
+11-23-20
+    The graphs were not dynamically resizing when the page size changed. I had to look up how to do this and it turned out to be a pretty
+    trivial solution. I just had to have the graphs be redrawn each time the page changes size. 
+
+    Added some initial styling and colors after sharing a color palette with Catriona. I wanted to keep it simple with only a couple different colors.
+    I changed the "timeline" graph to be a histogram that shows each album release in a given year. It's kinda of a combination of a couple ideas we talked about.
+    I also modified the other graphs that are "over time" to be a more sensible layout and added a button to cycle the graphs that fit the layout.
+    I ended this day with making a link that links back to our github at the bottom of the page.
+
+11-24-20
+    I ended up refactoring a big portion of the JS honestly because I was getting annoyed with it myself. 
+    It looks much better now and should be way more readable. I also reformatted using prettier after getting feedback from the HW about using it.
+
+11-25-20
+    We had meeting after class today and tried to test hosting the app to a live server. In the process we had to end up reverting a bunch of
+    commits because we realized github pages only supports static sites. Later that day I tried hosting again using a different branch.
+    I ended up getting to work with Heroku after troubleshooting issues with jquery not loading in properly.
+    This was the biggest roadblock of the project for me and I was really frustrated.
+
+11-27-20
+
+    Updated some CSS so that things don't go off the screen and made it so the footer is reponsive/doesn't overlap other elements.
+    Figured it would be easier to just hide it when the screen gets smaller because it's not as important. Also updated the graph cycle button CSS and
+    changed some of the titles to our sections so they better represent what's being shown. Reformatted all the files using Prettier as well.
