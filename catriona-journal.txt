@@ -33,5 +33,10 @@ the page is reloaded the artist that was currently displayed. Had to look up how
 with Heroku.
 
 11/27/20
-    worked on some animations. Added arrows onto the buttons that could expand to show tracks in the album list. Tried to
+    Worked on some animations. Added arrows onto the buttons that could expand to show tracks in the album list. Tried to
 make it so the arrow rotated when the button was clicked on but nothing worked yet.
+
+11/28/20
+    Fixed the animation for the arrow rotating when album tracks are expanded and hidden. Changed some css to make the text fit
+better when in mobile view. Fixed the issue for related artist's picutres not being uniform size by specifying their height and
+and width in css.

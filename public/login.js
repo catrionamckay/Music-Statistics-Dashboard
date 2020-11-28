@@ -240,10 +240,10 @@ function toggleTracks(element) {
   }
 
   var arrow = parent.getElementsByClassName("arrow");
-  if (arrow.transform == 'none'){
-    arrow.transform = "rotate(180deg)";
+  if (arrow[0].style.transform == 'none'){
+    arrow[0].style.transform = "rotate(180deg)";
   } else {
-    arrow.transform = 'initial';
+    arrow[0].style.transform = 'none';
   }
 }
 
@@ -544,10 +544,11 @@ function populatealbumslist(artistToSearch) {
                       trackList.style.display = "none";
                     });
                     
-                    arrow = document.createTextNode("↓");
+                    arrow = document.createTextNode("↑");
                     ptag = document.createElement("p");
                     ptag.appendChild(arrow);
                     ptag.setAttribute("class", "arrow");
+                    ptag.style.transform = "none";
                     document
                       .getElementById(album.name.replace(/[ :()]/g, "-")+"btn")
                       .appendChild(ptag);
