@@ -239,4 +239,14 @@ footer{
   margin-right: 10px;
 
 }
+@media only screen and (max-height: 925px){
+  footer{
+    visibility: hidden;
+  }
+}
+@media only screen and (max-width: 600px){
+  footer{
+    visibility: hidden;
+  }
+}
 
