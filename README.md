@@ -37,7 +37,10 @@ Features:
 Known Issues:
     -The line graph charts sometimes loads out of order due to 
     API calls not returning chronologically.
+
     -The number of albums is sometimes not accurate because spotify has a limit of albums returned per API call and if the artists's # of albums exceeds that, it shows that limit which by default is 20.
+
     -Sometimes the page will load for a second without any data.
     -The artists images are sometimes not perfect circles. This is an issue with how images in Spotify's API are not of uniform size.
+    
     -When artists have less than 2 LPs in their catalog, most of the graphs won't really show any data/won't work.
