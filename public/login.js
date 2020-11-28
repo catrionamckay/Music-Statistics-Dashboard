@@ -228,6 +228,7 @@ function toggleTracks(element) {
   //var list = document.querySelector(element.id);
   var parent = element.closest(".albumLi");
   var list = parent.getElementsByClassName("track-list");
+  
   //console.log(list);
   //list.forEach(item =>{
   for (const item of list) {
@@ -237,6 +238,13 @@ function toggleTracks(element) {
     } else {
       item.style.display = "none";
     }
+  }
+
+  var arrow = parent.getElementsByClassName("arrow");
+  if (arrow.transform == 'none'){
+    arrow.transform = "rotate(180deg)";
+  } else {
+    arrow.transform = 'initial';
   }
 }
 
@@ -483,7 +491,8 @@ function populatealbumslist(artistToSearch) {
           var albumlist = document.createElement("ul");
           var listitem;
           var albumDiv = document.createElement("div");
-
+          var ptag;
+          var arrow;
           var albumID;
           var tracks;
 
@@ -499,11 +508,12 @@ function populatealbumslist(artistToSearch) {
               albumID = album.id;
               albumName = document.createElement("button");
               listitem = document.createElement("li");
+              
               albumName.value = album.name;
               albumName.innerHTML = album.name;
               albumName.setAttribute("onclick", "toggleTracks(this);");
               albumName.setAttribute("class", "btn-transition");
-
+              albumName.setAttribute("id", album.name.replace(/[ :()]/g, "-")+"btn")
               tracks =
                 "https://api.spotify.com/v1/albums/" + albumID + "/tracks";
               $.ajax({
@@ -515,24 +525,35 @@ function populatealbumslist(artistToSearch) {
                   var trackList = document.createElement("ul");
                   var trackbtn;
                   var trackName;
-                  response.items.forEach((track) => {
-                    trackbtn = document.createElement("button");
-                    trackName = document.createElement("li");
-                    trackbtn.value = track.name;
-                    trackbtn.innerHTML = track.name;
-                    trackName.appendChild(trackbtn);
-                    trackbtn.setAttribute("class", "btn-transition");
-                    listitem.appendChild(trackName);
-                    trackList.appendChild(trackName);
-                    trackList.style.display = "none";
-                  });
-                  trackList.classList.add("track-list");
-                  document
-                    .getElementById(album.name.replace(/[ :()]/g, "-"))
-                    .appendChild(trackList);
+                  if(response.items.length > 1){
+                    response.items.forEach((track) => {
+                      trackbtn = document.createElement("button");
+                      trackName = document.createElement("li");
+                      trackbtn.value = track.name;
+                      trackbtn.innerHTML = track.name;
+                      trackName.appendChild(trackbtn);
+                      trackbtn.setAttribute("class", "btn-transition");
+                      listitem.appendChild(trackName);
+                      trackList.appendChild(trackName);
+                      trackList.style.display = "none";
+                    });
+                    
+                    arrow = document.createTextNode("↓");
+                    ptag = document.createElement("p");
+                    ptag.appendChild(arrow);
+                    ptag.setAttribute("class", "arrow");
+                    document
+                      .getElementById(album.name.replace(/[ :()]/g, "-")+"btn")
+                      .appendChild(ptag);
+
+                    trackList.classList.add("track-list");
+                    document
+                      .getElementById(album.name.replace(/[ :()]/g, "-"))
+                      .appendChild(trackList);
+                  }
                 },
               });
-
+              
               albumDiv.appendChild(albumName);
               albumDiv.setAttribute("class", "albumbtn");
               listitem.setAttribute("id", album.name.replace(/[ :()]/g, "-"));
@@ -540,6 +561,8 @@ function populatealbumslist(artistToSearch) {
               listitem.appendChild(albumName);
 
               albumlist.appendChild(listitem);
+              
+                      
             }
           });
         },
