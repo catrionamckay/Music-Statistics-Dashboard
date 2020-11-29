@@ -1,3 +1,9 @@
+https://musicstatsdb.herokuapp.com/
+
+https://github.com/catrionamckay/Music-Statistics-Dashboard/
+
+
+
 11-04-20
     Created login page/authorization for spotify's API. Used their API examples that can
     be found on Spotify's API documentation website. Attempted to create a differnt type of
