@@ -55,3 +55,7 @@
     Updated some CSS so that things don't go off the screen and made it so the footer is reponsive/doesn't overlap other elements.
     Figured it would be easier to just hide it when the screen gets smaller because it's not as important. Also updated the graph cycle button CSS and
     changed some of the titles to our sections so they better represent what's being shown. Reformatted all the files using Prettier as well.
+    
+11-28-20
+    Finished comments for the project and prepared hosting. Hosted the app using Heroku and made a dummy spotify account so people can use it without making their own
+    account.
