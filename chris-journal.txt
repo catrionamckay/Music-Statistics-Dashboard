@@ -9,6 +9,8 @@ https://github.com/catrionamckay/Music-Statistics-Dashboard/
     be found on Spotify's API documentation website. Attempted to create a differnt type of
     authorization page, but decided to stick with the one that had an example to save time. This was really useful because
     I don't have any back-end experiences and I thought this would be a major roadblock.
+	I had to install npm and node.js in at this point.
+	Next time I would start this part earlier and put in more research in how to make it easier to authenticate.
 11-08-20
     Had a team meeting to discuss the app, added a style sheet so we could begin styling the layout
     of the page.
@@ -37,6 +39,7 @@ https://github.com/catrionamckay/Music-Statistics-Dashboard/
     but as the project goes on i'm finding that the selection is pretty limited for what we wanted to do.
     I wanted to make a timeline of when an artists albums were released but the timeline chart they have only takes
     certain formats as it's data, and spotify's API didn't have dates in the correct format. I made a work around chart that looks ok.
+	Next time I would put more research into charting libraries to find ones that work better with our ideas.
 11-23-20
     The graphs were not dynamically resizing when the page size changed. I had to look up how to do this and it turned out to be a pretty
     trivial solution. I just had to have the graphs be redrawn each time the page changes size. 
@@ -49,12 +52,15 @@ https://github.com/catrionamckay/Music-Statistics-Dashboard/
 11-24-20
     I ended up refactoring a big portion of the JS honestly because I was getting annoyed with it myself. 
     It looks much better now and should be way more readable. I also reformatted using prettier after getting feedback from the HW about using it.
+	If there was a next time I think we should have planned out our code structure so that our file wasn't messy to at the beginning.
 
 11-25-20
     We had meeting after class today and tried to test hosting the app to a live server. In the process we had to end up reverting a bunch of
     commits because we realized github pages only supports static sites. Later that day I tried hosting again using a different branch.
     I ended up getting to work with Heroku after troubleshooting issues with jquery not loading in properly.
     This was the biggest roadblock of the project for me and I was really frustrated.
+	Next time I would test out hosting the site earlier on just so we knew about some of these issues before.
+	I had to install the heroku CLI during this process
 
 11-27-20
 
