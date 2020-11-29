@@ -1,9 +1,10 @@
 var access_token;
 google.charts.load("current", { packages: ["corechart"] });
 
-
+//Setting intial load of page to be most popular Spotify artist
 var lastArtist = "Ed Sheeran";
 
+//Code to grab authtication data from the URL after returning from authtication page.
 (function () {
   /**
    * Obtains parameters from the hash of the URL
@@ -29,7 +30,8 @@ var lastArtist = "Ed Sheeran";
     alert("There was an error during the authentication");
   } else {
     if (access_token) {
-      // render oauth info
+      // After checking to see if our access tokens are valid
+      //Show the "loggedin" page and try to load the last saved artist out of local storage (used when a user refreshes)
 
       $.ajax({
         url: "https://api.spotify.com/v1/me",
@@ -57,15 +59,6 @@ var lastArtist = "Ed Sheeran";
     }
   }
 })();
-
-//This code block processes the users artist search
-//The artist is grabbed from the input box after search button is pressed,
-//then is formed into URL for the API call
-//API Call is made and artist ID is grabbed for future calls
-var artistToSearch = "";
-var searchButton = document.querySelector("#search");
-var artistName;
-
 //graph1 global varibles for future use
 var graph1;
 var data1;
@@ -86,8 +79,20 @@ var graph4;
 var data4;
 var options4;
 
+//This code block processes the users artist search
+//The artist is grabbed from the input box after search button is pressed,
+//then is formed into URL for the API call
+//API Call is made and artist ID is grabbed for future calls
+var artistToSearch = "";
+var searchButton = document.querySelector("#search");
+var artistName;
+
+//Get the graph cycle button for onclick listener
 let graphloc = document.getElementById("graphnavbut");
+
+//Set intial value for switch statement field
 var clicks = 1;
+
 searchButton.addEventListener("click", function getUserSearch() {
   clicks = 1;
 
@@ -109,6 +114,9 @@ searchButton.addEventListener("click", function getUserSearch() {
     populatestaticstats(artistToSearch);
     creategraph1(artistToSearch);
 
+
+    //Handling of graph navigation is done by clicks to the "Cycle Graphs button"
+    //After clicks exceed a certain amount, it is reset so that it loops back around to the first graph shown
     graphloc.onclick = function () {
       switch (clicks) {
         case 4:
@@ -122,7 +130,9 @@ searchButton.addEventListener("click", function getUserSearch() {
         case 3:
           creategraph3(artistToSearch);
           break;
+
         case 1:
+          //Generating API data and inserting it into a histogram chart of album releases/albums per year
           $.ajax({
             url: artistToSearch,
             headers: {
@@ -192,7 +202,7 @@ searchButton.addEventListener("click", function getUserSearch() {
 
     populatealbumslist(artistToSearch);
     populaterelatedartists(artistToSearch);
-
+    //Reset the search field to an empty string
     document.getElementById("artist-name").value = "";
   }
 });
@@ -220,7 +230,7 @@ function reformatFollowerCount(followerCount) {
   newNumber = newNumber.toFixed(1);
   return newNumber + "M";
 }
-
+//Allows tracks to be shown when an album is clicked in the discography menu
 function toggleTracks(element) {
   //console.log("Element " + element.id);
 
@@ -246,12 +256,14 @@ function toggleTracks(element) {
     arrow[0].style.transform = 'none';
   }
 }
-
+//Helper for related artist API call URL
 function relatedArtistSearch(value) {
   var searchInput = document.getElementById("artist-name");
   searchInput.value = value;
   searchButton.click();
 }
+
+//function allows graphs to be resized dynmaically based on the page size.
 function resizeGraph() {
   graph1.draw(data1, options1);
   graph2.draw(data2, options2);
@@ -261,6 +273,7 @@ function resizeGraph() {
 window.onload = resizeGraph;
 window.onresize = resizeGraph;
 
+//Function that gather API data and forms it into a pie chart of an artists music genres.
 function creategraph1(artistToSearch) {
   $.ajax({
     url: artistToSearch,
@@ -339,6 +352,7 @@ function creategraph1(artistToSearch) {
   });
 }
 
+//Function that gathers API data and puts into a bar chart of songs per album.
 function creategraph2(artistToSearch) {
   $.ajax({
     url: artistToSearch,
@@ -398,6 +412,9 @@ function creategraph2(artistToSearch) {
     },
   });
 }
+
+
+//Function that will gather API data and put it into a line chart of album popularity.
 function creategraph3(artistToSearch) {
   $.ajax({
     url: artistToSearch,
@@ -472,6 +489,9 @@ function creategraph3(artistToSearch) {
     },
   });
 }
+
+
+//Function to populate artist's discography list with data.
 function populatealbumslist(artistToSearch) {
   $.ajax({
     url: artistToSearch,
@@ -578,6 +598,7 @@ function populatealbumslist(artistToSearch) {
   });
 }
 
+//Populates static stats section with API data
 function populatestaticstats(artistToSearch) {
   $.ajax({
     url: artistToSearch,
@@ -636,6 +657,8 @@ function populatestaticstats(artistToSearch) {
     },
   });
 }
+
+//Populates the related artists bar with API data
 function populaterelatedartists(artistToSearch) {
   $.ajax({
     url: artistToSearch,

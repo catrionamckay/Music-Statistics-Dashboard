@@ -35,6 +35,7 @@ Features:
 
 
 Known Issues:
+
     -The line graph charts sometimes loads out of order due to 
     API calls not returning chronologically.
 
